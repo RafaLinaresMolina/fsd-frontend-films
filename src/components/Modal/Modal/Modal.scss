@@ -1,0 +1,99 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  max-height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  background: whitesmoke;
+  width: 40em;
+  height: auto;
+  max-height: 80vh;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+.modal-exit{
+  display: flex;
+}
+
+.modal-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 4em;  
+  font-size: 1.4em;
+}
+
+.modal-header{
+  border-radius: 0.5em 0.5em 0em 0em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.modal-body{
+  overflow-y: auto;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+
+.modal-footer{
+  display: flex;
+  height: 1.5em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  border-radius: 1em;
+}
+
+.modal-default{
+  display: flex;
+  flex-direction: row;
+  background-color: lightblue;
+}
+
+.modal-ok{
+  display: flex;
+  flex-direction: row;
+  background-color: lightgreen;
+}
+
+.modal-warning{
+  display: flex;
+  flex-direction: row;
+  background-color: orange;
+}
+
+.modal-error{
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+}
+
+.display-block {
+  display: flex;
+  flex-direction: row;
+  display: block;
+}
+
+.display-none {
+  display: flex;
+  flex-direction: row;
+  display: none;
+}
