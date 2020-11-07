@@ -1,7 +1,7 @@
 import GenericReacTable from '../../../components/GenericTable/GenericReactTable.jsx';
 import GenericReacTable from '../../../components/GenericTable/GenericReactTable.scss';
 
-function AllOrderList(){
+function UserOrderList(){
   
   const orders = [
     {
@@ -281,7 +281,7 @@ const headers = [
   );
 }
 
-export default AllOrderList;
+export default UserOrderList;
 
 
 
