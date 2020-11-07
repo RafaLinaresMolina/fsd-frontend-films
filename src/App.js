@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {Arwes, createTheme, ThemeProvider } from "arwes";
+import AdminTable from './containers/AdminProfile/component/AdminTable';
+import UserTable from './containers/UserProfile/component/UserTable';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={createTheme()}>
+        <Arwes>
+          <AdminTable />
+          <UserTable />
+        </Arwes>
+      </ThemeProvider>
     </div>
   );
 }

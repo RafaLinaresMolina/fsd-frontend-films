@@ -1,8 +1,6 @@
 import React from "react";
 import { useTable, useSortBy } from "react-table";
-import {Table} from 'arwes';
-import './GenericReactTable.scss';
-
+import "./GenericReactTable.scss";
 
 function GenericReactTable(props) {
   const data = React.useMemo(() => props.data, [props.data]);
@@ -14,26 +12,33 @@ function GenericReactTable(props) {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data }, useSortBy );
+  } = useTable({ columns, data }, useSortBy);
 
   return (
-
-      <Table>
-          <div>
+    <div>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-     
-                >
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
                   <span>
-              {column.isSorted ? (column.isSortedDesc 
-                ? <span role="img" aria-label="down arrow">{" "}&#128317;</span> :
-               <span role="img" aria-label="up arrow">{" "}&#128316;</span>) : ""}
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <span role="img" aria-label="down arrow">
+                          {" "}
+                          &#128317;
+                        </span>
+                      ) : (
+                        <span role="img" aria-label="up arrow">
+                          {" "}
+                          &#128316;
+                        </span>
+                      )
+                    ) : (
+                      ""
+                    )}
                   </span>
                 </th>
               ))}
@@ -42,19 +47,12 @@ function GenericReactTable(props) {
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row) => {
-            
             prepareRow(row);
             return (
-              
-              <tr {...row.getRowProps()} >
+              <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td
-                      {...cell.getCellProps()}
-              
-                    >
-                      {cell.render("Cell")}
-                    </td>
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
               </tr>
@@ -63,8 +61,6 @@ function GenericReactTable(props) {
         </tbody>
       </table>
     </div>
-    </Table>
-
   );
 }
 export default GenericReactTable;
