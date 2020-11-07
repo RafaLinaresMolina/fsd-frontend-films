@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./Notification.scss";
 import NotificationMessage from "./NotificationMessage";
 
-const CustomNotification = (props) => {
+const Notification = (props) => {
 
   return (
 		<div className="notification">
@@ -63,4 +63,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CustomNotification);
+export default connect(mapStateToProps)(Notification);
