@@ -28,12 +28,12 @@ function GenericReactTable(props) {
                       column.isSortedDesc ? (
                         <span role="img" aria-label="down arrow">
                           {" "}
-                          &#128317;
+                          ∧
                         </span>
                       ) : (
                         <span role="img" aria-label="up arrow">
                           {" "}
-                          &#128316;
+                          ∨
                         </span>
                       )
                     ) : (
