@@ -12,6 +12,10 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.verticalAlignIcons{
+  vertical-align: middle;
+  padding-bottom: 0.1em;
+}
 
 .App-header {
   background-color: #282c34;
