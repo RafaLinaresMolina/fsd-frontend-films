@@ -1,39 +1,48 @@
-import React from "react";
+import { Button, createTheme, Project, ThemeProvider, Words } from "arwes";
+import React, { useCallback, useEffect } from "react";
 import "./Modal.scss";
 
-function Modal(props){
-
+function Modal(props) {
   const showHideClassName = props.show
     ? "modal display-block"
     : "modal display-none";
 
-  const headerModal = {
-    0: "modal-error",
-    1: "modal-warning",
-    2: "modal-ok",
-    3: "modal-default",
-  };
-
-  const classes = `modal-header ${headerModal[props.header]}`;
+  const escFunction = useCallback((event) => {
+    if (event.keyCode === 27) {
+      props.handleClose();
+    }
+  }, []);
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  }, []);
 
   return (
     <div className={showHideClassName}>
-      <section className="modal-main">
-        <div className={classes}>
-        <div className={"redButton"} onClick={props.handleClose}>
-                  {" "}
-                  <span role="img" aria-label="Cancel Order">
-                    &#10060;
-                  </span>{" "}
+      <ThemeProvider theme={createTheme(props.theme)}>
+        <section className="modal-main">
+          <Project animate header={props.title} icon={props.icon}>
+            {(anim) => (
+              <>
+                <div animate show={anim.entered} className="modal-body">
+                  {props.children}
                 </div>
-          <div className="modal-title">{props.title}</div>
-        </div>
-        <div className="modal-body">{props.children}</div>
-        <div className="modal-footer"></div>
-      </section>
+                <div className="modal-footer">
+                  <Button onClick={props.handleClose}>
+                    <span role="img" aria-label="Cancel Order">
+                      &#10060; Close
+                    </span>
+                  </Button>
+                </div>
+              </>
+            )}
+          </Project>
+        </section>
+      </ThemeProvider>
     </div>
-  )
-
+  );
 }
 
 export default Modal;
