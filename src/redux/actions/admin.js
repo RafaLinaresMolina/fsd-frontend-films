@@ -15,8 +15,9 @@ export const getAllUsers = async(token) => {
 export const getAllOrders = async(token) => {
   const res = await axios.get(process.env.REACT_APP_BASE_URL + '/orders/', {
       headers: {
-          Authorization: token
+          Authorization: "Bearer " + token
       }
   })
-  store.dispatch({ type: SET_ALL_ORDERS, payload: res.data });
+  console.log(res.data)
+  store.dispatch({ type: SET_ALL_ORDERS, payload: res.data.rows });
 }
