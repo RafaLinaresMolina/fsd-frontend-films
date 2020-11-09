@@ -1,6 +1,7 @@
 const initialState = {
   allOrders: [],
-  allUsers: []
+  orderCount: 0,
+  totalOrders: 0,
 };
 const user = (state = initialState, action) => {
   const actions = {
@@ -10,7 +11,9 @@ const user = (state = initialState, action) => {
     },
     SET_ALL_ORDERS: {
       ...state,
-      allOrders: action.payload,
+      allOrders: action.payload?.allOrders,
+      orderCount: action.payload?.orderCount,
+      totalOrders: action.payload?.totalOrders,
     },
     UPDATE_ALL_USERS: {
       ...state,

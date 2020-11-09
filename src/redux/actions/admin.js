@@ -18,6 +18,10 @@ export const getAllOrders = async(token) => {
           Authorization: "Bearer " + token
       }
   })
-  console.log(res.data)
-  store.dispatch({ type: SET_ALL_ORDERS, payload: res.data.rows });
+  const payload = {
+    allOrders: res.data.rows,
+    orderCount: res.data.rows.length,
+    totalOrders: res.data.count,
+  }
+  store.dispatch({ type: SET_ALL_ORDERS, payload });
 }

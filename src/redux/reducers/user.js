@@ -1,15 +1,15 @@
 const initialState = {
   user: {},
+  token: null,
 };
 const user = (state = initialState, action) => {
   const actions = {
     LOGIN: {
       ...state,
-      user: action.payload,
+      token: action.payload,
     },
     LOGOUT: {
-      ...state,
-      user: action.payload,
+      initialState
     },
     READ_USER: {
       ...state,
