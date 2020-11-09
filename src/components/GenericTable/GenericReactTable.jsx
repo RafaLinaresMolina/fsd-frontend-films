@@ -3,8 +3,8 @@ import { useTable, useSortBy } from "react-table";
 import "./GenericReactTable.scss";
 
 function GenericReactTable(props) {
-  const data = React.useMemo(() => props.data, [props.data]);
-  const columns = React.useMemo(() => props.columns, []);
+  const data = props.data;
+  const columns = props.columns;
 
   const {
     getTableProps,
