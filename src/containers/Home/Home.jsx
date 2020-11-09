@@ -14,20 +14,19 @@ const contentStyle = {
   };
 
 return(
-  <Carousel autoplay={onChange}>
+  <div className="imgCarrusel">
+    <Carousel dots={false} autoplay={onChange}>
     <div class="imagen1">
-      <h3 style={contentStyle}>1</h3>
     </div>
     <div class="imagen2">
-      <h3 style={contentStyle}>2</h3>
     </div>
     <div class="imagen3">
-      <h3 style={contentStyle}>3</h3>
     </div>
     <div class="imagen4">
-      <h3 style={contentStyle}>4</h3>
     </div>
   </Carousel>
+  </div>
+  
 );
 }
 

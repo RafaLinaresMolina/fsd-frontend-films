@@ -3,26 +3,34 @@
     background-repeat: no-repeat;
 	background-size: cover;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 .imagen2{
     background-image: url("https://media.vandal.net/m/2-2020/2020241333745_2.jpg");
     background-repeat: no-repeat;
 	background-size: cover;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 .imagen3{
     background-image: url("https://www.comprarsmarttv.online/wp-content/uploads/2019/11/Los-mejores-sitios-web-para-ver-series-online-gratis-1024x565.jpg");
     background-repeat: no-repeat;
 	background-size: cover;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 .imagen4{
     background-image: url("https://minilua.com/wp-content/uploads/2019/11/Conhe%C3%A7a-7-sites-para-assistir-s%C3%A9ries-online-1.jpg");
     background-repeat: no-repeat;
 	background-size: cover;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
+
+.imgCarrusel{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    opacity: 15%;
+}
+
