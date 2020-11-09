@@ -2,6 +2,8 @@ import "./App.css";
 import {Arwes, createTheme, ThemeProvider } from "arwes";
 import AdminTable from './containers/AdminProfile/component/AdminTable';
 import UserTable from './containers/UserProfile/component/UserTable';
+import Home from './containers/Home/Home';
+import 'antd/dist/antd.css'; 
 
 function App() {
 
@@ -9,8 +11,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={createTheme()}>
         <Arwes>
+          <Home />
           <AdminTable />
-          <UserTable />
         </Arwes>
       </ThemeProvider>
     </div>
