@@ -97,7 +97,7 @@ const AdminTable = (props) => {
         {
           Header: "#",
           Cell: ({row}) => {
-            return row.original.stock
+            return row.original.OrderFilm.stock
           },
         }
         ,{
