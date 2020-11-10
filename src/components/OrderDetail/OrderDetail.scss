@@ -1,0 +1,13 @@
+
+.OrderDetail{
+  .priceSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.3em;
+    align-items: center;
+  }
+  label{
+    font-size: 1.3em;
+  }
+}
