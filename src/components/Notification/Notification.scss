@@ -2,9 +2,8 @@
   position: absolute;
   z-index: 4;
   height: auto;
-  display:flex;
+  display: flex;
 }
-
 
 .notification-container {
   position: fixed;
@@ -17,7 +16,7 @@
   max-height: 80vh;
 }
 
-.notification-wrapper{
+.notification-wrapper {
   margin-bottom: 1em;
 }
 
@@ -27,20 +26,24 @@
   height: 100%;
   width: 100%;
   margin-right: 2em;
+
+ 
 }
 
-.notification-icon{
+.notification-icon {
   display: flex;
   padding-left: 1em;
   vertical-align: middle;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-shadow: 2px 2px 5px gray !important;
 }
 
-.notification-message{
+.notification-message {
   display: flex;
   flex-direction: column;
+  text-shadow: 2px 2px 5px gray !important;
 }
 
 .notification-title {
@@ -50,17 +53,57 @@
   padding-left: 1em;
 }
 
-.error-icon-color{
+.error-icon-color {
   color: #ff1f1f;
-  text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+  animation: svg-shadow-error 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-error {
+    from {
+      filter: drop-shadow(0 0 0.5em #ff6e6e) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #ff6e6e) 
+    }
+  }
 }
-.warning-icon-color{
+.warning-icon-color {
   color: #ffc124;
-  text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+  animation: svg-shadow-warning 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-warning {
+    from {
+      filter: drop-shadow(0 0 0.5em #ffde8a) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #ffde8a)
+    }
+  }
 }
-.success-icon-color{
+.success-icon-color {
   color: #4cb827;
-  text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+  animation: svg-shadow-success 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-success {
+    from {
+      filter: drop-shadow(0 0 0.5em #aaff8c) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #aaff8c) 
+    }
+  }
+}
+
+.info-icon-color {
+  animation: svg-shadow-info 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-info {
+    from {
+      filter: drop-shadow(0 0 0.5em #70c4ff) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #70c4ff) 
+    }
+  }
 }
 .notification-display-block {
   display: flex;
