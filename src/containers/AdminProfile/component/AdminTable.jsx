@@ -4,12 +4,12 @@ import {getAllOrders} from '../../../redux/actions/admin'
 import GenericReactTable from "../../../components/GenericTable/GenericReactTable.jsx";
 import { useEffect, useState } from "react";
 import Modal from "../../../components/Modal/Modal";
-
-import PackageIcon from 'mdi-react/PackageIcon';
+import MovieOpenIcon from 'mdi-react/MovieOpenIcon'
 import UserIcon from 'mdi-react/UserIcon';
+import OrderDetail from "../../../components/OrderDetail/OrderDetail";
 const AdminTable = (props) => {
   useEffect(() => {
-      const token = "";
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNjA1MDA4NDc5LCJleHAiOjE2MDc2MDA0Nzl9.Is-neFdHrOHDErX68H5vOLFlNjzJDpAE5mw-6Pz2Zbs";
       getAllOrders(token).catch(err => console.log(err))
   }, [])
 
@@ -74,42 +74,7 @@ const AdminTable = (props) => {
     
   ];
 
-  const filmsHeaders = [
-    {
-      Header: "Films",
-      columns: [
-        {
-          Header: "Film Id",
-          Cell: ({row}) => {
-            console.log('VALUE:', row.original.id)
-            return row.original.id
-          },
-          
-        },
-        {
-          Header: "Original Title",
-          accessor: "original_title"
-        },
-        {
-          Header: "Title",
-          accessor: "title"
-        },
-        {
-          Header: "#",
-          Cell: ({row}) => {
-            return row.original.OrderFilm.stock
-          },
-        }
-        ,{
-          Header: "status",
-          Cell: ({row}) => {
-            return row.original.status
-          },
-        },
-      ],
-    },
-    
-  ];
+
 
   const [row, setRow] = useState({});
 
@@ -131,13 +96,8 @@ const AdminTable = (props) => {
           <p><Words>Email: {row.User?.email}</Words></p>
         </div>
       </Modal>
-      <Modal show={showDetailOrder} handleClose={hideModalDetailOrder} header={3} title={"Order Details"} icon={<PackageIcon className='verticalAlignIcons'/>}>
-     
-      {row.Films ? <GenericReactTable data={row.Films} columns={filmsHeaders}/> : ''}
-   
-          <label typeof="text"> Price: {row.charge} €</label>
-          <label typeof="text"> Total Price: {row.charge} €</label>
-       
+      <Modal show={showDetailOrder} handleClose={hideModalDetailOrder} header={3} title={"Order Details"} icon={<MovieOpenIcon className='verticalAlignIcons'/>}>
+        {row.Films ? <OrderDetail data={row.Films} price={{charge: row.charge, totalCharge: row.totalCharge, currency: row.currency}}/> : ''}
       </Modal>
       <GenericReactTable data={props.allOrders} columns={oerderHeaders} />
     </Table>

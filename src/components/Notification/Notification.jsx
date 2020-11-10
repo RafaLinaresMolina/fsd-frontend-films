@@ -52,14 +52,14 @@ const Notification = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    showErrorNotification: state.showErrorNotification,
-    showWarningNotification: state.showWarningNotification,
-    showSuccessNotification: state.showSuccessNotification,
-    showInfoNotification: state.showInfoNotification,
-    errorNotification: state.errorNotification,
-    warningNotification: state.warningNotification,
-    successNotification: state.successNotification,
-    infoNotification: state.infoNotification,
+    showErrorNotification: state.notificationReducer.showErrorNotification,
+    showWarningNotification: state.notificationReducer.showWarningNotification,
+    showSuccessNotification: state.notificationReducer.showSuccessNotification,
+    showInfoNotification: state.notificationReducer.showInfoNotification,
+    errorNotification: state.notificationReducer.errorNotification,
+    warningNotification: state.notificationReducer.warningNotification,
+    successNotification: state.notificationReducer.successNotification,
+    infoNotification: state.notificationReducer.infoNotification,
   };
 };
 
