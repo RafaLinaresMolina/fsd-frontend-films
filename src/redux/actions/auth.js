@@ -34,11 +34,7 @@ export const logOut = async(token) => {
   localStorage.clear();
 }
 
-export const register = async(token, body) => {
-    const res = await axios.get(process.env.REACT_APP_BASE_URL + '/auth/signup', body, {
-        headers: {
-            Authorization: token
-        }
-    });
+export const register = async(body) => {
+    const res = await axios.get(process.env.REACT_APP_BASE_URL + '/auth/signup', body);
     return res.data;
   }
