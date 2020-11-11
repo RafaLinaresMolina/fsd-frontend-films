@@ -15,7 +15,7 @@ const notification = (state = initialState, action) => {
       showWarningNotification: action.payload?.show,
       warningNotification: action.payload?.notification,
     },
-    SUCCSESS_NOTIFICATION: {
+    SUCCESS_NOTIFICATION: {
       ...state,
       showSuccessNotification: action.payload?.show,
       successNotification: action.payload?.notification,
