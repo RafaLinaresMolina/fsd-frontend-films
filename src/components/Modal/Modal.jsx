@@ -1,6 +1,7 @@
 import { Button, createTheme, Project, ThemeProvider, Words } from "arwes";
 import React, { useCallback, useEffect } from "react";
 import "./Modal.scss";
+import CloseIcon from 'mdi-react/CloseIcon';
 
 function Modal(props) {
   const showHideClassName = props.show
@@ -32,7 +33,7 @@ function Modal(props) {
                 <div className="modal-footer">
                   <Button onClick={props.handleClose}>
                     <span role="img" aria-label="Cancel Order">
-                      &#10060; Close
+                      < CloseIcon className="verticalAlignIcons"/> Close
                     </span>
                   </Button>
                 </div>
