@@ -4,6 +4,7 @@ import {Arwes, createTheme, ThemeProvider } from "arwes";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import AdminTable from './containers/AdminProfile/component/AdminTable';
 import Home from './containers/Home/Home';
+import Notification from "./components/Notification/Notification";
 import 'antd/dist/antd.css'; 
 import { READ_USER } from "./redux/types/userTypes";
 import { connect } from "react-redux";
