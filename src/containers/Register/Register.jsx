@@ -30,30 +30,24 @@ const doRegister = async (register, props) => {
 }
 const validateAndSend = async (register, props) => {
   try {
-    console.log("validateAndSend");
     let notificationMessage = [];
 
     let allOk = true;
     const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     if (register.name === "" || register.lastName === "" || register.password === "" || register.email === "") {
-      console.log("hola1if")
-      console.log()
       notificationMessage.push(validationErrorMessages.errorEmptyRequired);
       allOk = false;
     }
     if ((register.password !== register.rePassword)) {
-      console.log(register.password, register.rePassword)
       notificationMessage.push(validationErrorMessages.errorEqualPassword)
       allOk = false;
     }
     if (!passRegex.test(register.password)) {
-      console.log("hola3if")
       notificationMessage.push(validationErrorMessages.errorPassword)
       allOk = false;
     }
     console.log(notificationMessage)
     if (allOk) {
-      console.log("hola4if")
       return await doRegister(register, props);
     } else {
       props.dispatch({

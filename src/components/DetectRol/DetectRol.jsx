@@ -15,7 +15,7 @@ function DetectRol (props) {
   
     return (
       <div className="homeInfo">
-        {cargarVista(props.user.roleId)}
+        {cargarVista(props.user.rol_id)}
       </div>
     );
   }
