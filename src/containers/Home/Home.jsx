@@ -27,7 +27,7 @@ return(
   </Carousel>
   </div>
   
-);
+ );
 }
 
 export default Home;
