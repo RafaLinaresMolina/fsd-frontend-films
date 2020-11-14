@@ -2,7 +2,7 @@ const initialState = {
   profile: {},
   orders: [],
 };
-const user = (state = initialState, action) => {
+const profile = (state = initialState, action) => {
   const actions = {
     SET_PROFILE: {
       ...state,
@@ -25,4 +25,4 @@ const user = (state = initialState, action) => {
     : state;
 };
 
-export default user;
+export default profile;

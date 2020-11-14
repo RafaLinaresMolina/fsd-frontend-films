@@ -6,10 +6,10 @@ import store from '../store';
 export const getOrders = async(token) => {
     const res = await axios.get(process.env.REACT_APP_BASE_URL + '/profile/orders', {
         headers: {
-            Authorization: token
+            Authorization: "bearer " + token
         }
     })
-    store.dispatch({ type: SET_PROFILE_ORDERS, payload: res.data });
+    store.dispatch({ type: SET_PROFILE_ORDERS, payload: res.data.rows });
 }
 
 export const getProfile = async(token) => {
