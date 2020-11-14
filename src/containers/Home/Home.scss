@@ -30,9 +30,43 @@
 .imgCarrusel{
     width: 100%;
     height: 100vh;
-    position: fixed;
     opacity: 15%;
     z-index: -1;
+    position: fixed;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    .logo{
+        margin-top: 1em;
+        font-size: 5em;
+        font-weight: 800;
+        font-family: 'Electrolize', sans-serif;
+        text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+        }
 }
 
 
+.buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-family: 'Nova Square', cursive;
+        text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+        margin-top: 5em;
+    .hole{
+        width: 5em;
+        }
+    }
+
+.phrase{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    font-family: 'Electrolize', sans-serif;
+    text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+    margin-top: 5em;
+    }
