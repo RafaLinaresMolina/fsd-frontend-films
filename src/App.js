@@ -47,7 +47,6 @@ function App(props) {
               {!props.user?.email ? (
                 <Route exact path="/">
                   <Home />
-                  <Login></Login>
                 </Route>
               ) : (
                   <Route exact path="/dashboard">
