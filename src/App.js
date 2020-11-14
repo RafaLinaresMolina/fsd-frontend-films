@@ -12,6 +12,7 @@ import { READ_USER, LOGIN } from "./redux/types/userTypes";
 import { connect } from "react-redux";
 import DetectRol from "./components/DetectRol/DetectRol";
 import { getLoggedUser } from "./redux/actions/auth";
+import { greenTheme } from "./themes/themes";
 
 function App(props) {
   useEffect(() => {
@@ -40,8 +41,8 @@ function App(props) {
   return (
     <div className="App">
       <ThemeProvider theme={createTheme()}>
-        <Arwes>
-          <Notification></Notification>
+        <Arwes animate>
+          <Notification />
           <BrowserRouter>
             <Switch>
               {!props.user?.email ? (

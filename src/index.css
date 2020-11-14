@@ -10,6 +10,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  scrollbar-color: rgba(122, 224, 255, 0.5) rgba(122, 224, 255, 0.1) !important;
+  scrollbar-width: thin;
 }
 
 code {

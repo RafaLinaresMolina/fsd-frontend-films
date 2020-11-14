@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import Profile from "../../containers/Profile/Profile"; 
+import ClientZone from "../../containers/ClientZone/ClientZone";
 
 function DetectRol (props) {
     const cargarVista = (roleId) => {
       const layouts = {
         0: <h1>ADMIN</h1>,
-        1: <Profile/>,
+        1: <ClientZone/>,
       };
       return layouts[roleId] ? (
         layouts[roleId]
@@ -15,9 +15,7 @@ function DetectRol (props) {
     };
   
     return (
-      <div className="homeInfo">
-        {cargarVista(props.user.rol_id)}
-      </div>
+        cargarVista(props.user.rol_id)
     );
   }
   

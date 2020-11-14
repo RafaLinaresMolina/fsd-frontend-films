@@ -38,7 +38,7 @@ return(
       </Carousel>
     </div>
     
-    <div className="header">
+    <div className="header-home">
       <div className='logo'>GEEKFLIX</div>
     </div>
 
