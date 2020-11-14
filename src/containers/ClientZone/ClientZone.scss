@@ -1,0 +1,32 @@
+.clientZone{
+  height: 100%;
+}
+
+
+
+.header{
+  position: fixed;
+  display: inline;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  background:rgba(122, 224, 255, 0.3);
+
+  .headerLogo{
+    display: flex;
+    padding-left: 2em;
+    padding-top: 1em;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+}
+
+.contentClient{
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 4.2em;
+  margin-bottom: 3em;
+}
