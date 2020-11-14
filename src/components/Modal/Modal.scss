@@ -14,12 +14,13 @@
   border-radius: 1em;
   display: flex;
   flex-direction: column;
-  height: auto;
+  min-height: 40vh;
   max-height: 80vh;
   z-index: 5;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .modal-exit{
   display: flex;
@@ -32,7 +33,7 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 1em;
-}
+} 
 
 .modal-body{
   overflow-y: auto;

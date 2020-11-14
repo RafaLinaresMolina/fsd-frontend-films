@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './Register.scss';
 import { connect } from 'react-redux';
+import { Button } from "arwes";
 import { registerAction } from '../../redux/actions/auth';
 import { ERROR_NOTIFICATION, SUCCESS_NOTIFICATION, WARNING_NOTIFICATION } from '../../redux/types/notificationTypes';
+import AccountPlusIcon from 'mdi-react/AccountPlusIcon'
 
 const validationErrorMessages = {
   errorPassword: 'Password must contain a minimum of 8 characters, 1 special character, 1 capital letter and at least 1 number.',
@@ -93,17 +95,17 @@ function Register(props) {
 
   return (
 
-    <div>
+    <div className='form-log-reg'>
 
-      <label>* Name: <input type="text" name="name" required onChange={eventHandler} /></label>
-      <label>* Surnames: <input type="text" name="last_name" required onChange={eventHandler} /></label>
-      <label>* Email: <input type="email" onChange={eventHandler} name="email" required /></label>
-      <label>* Credit Card: <input type="creditCard" onChange={eventHandler} name="creditCard" required /></label>
-      <label>* Password: <input type="password" onChange={eventHandler} name="password" required /></label>
-      <label>* Confirm Password: <input onChange={eventHandler} type="password" name="rePassword" required /></label>
+      <label>* Name: <input className='input' type="text" name="name" required onChange={eventHandler} /></label>
+      <label>* Surnames: <input className='input' type="text" name="last_name" required onChange={eventHandler} /></label>
+      <label>* Email: <input className='input' type="email" onChange={eventHandler} name="email" required /></label>
+      <label>* Credit Card: <input className='input' type="creditCard" onChange={eventHandler} name="creditCard" required /></label>
+      <label>* Password: <input className='input' type="password" onChange={eventHandler} name="password" required /></label>
+      <label>* Confirm Password: <input className='input' onChange={eventHandler} type="password" name="rePassword" required /></label>
 
-
-      <button onClick={async () => {
+    <div className="button-log-reg">
+      <Button animate layer="success" onClick={async () => {
         try {
           const ok = await validateAndSend(register, props);
           if (ok) {
@@ -114,7 +116,9 @@ function Register(props) {
         } catch (err) {
           console.log(err.message)
         }
-      }}> Register </button>
+        
+      }}><AccountPlusIcon className="verticalAlignIcons" /> Register </Button>
+      </div>
     </div>
   )
 }
