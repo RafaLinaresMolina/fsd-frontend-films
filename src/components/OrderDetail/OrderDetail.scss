@@ -1,0 +1,30 @@
+
+.OrderDetail{
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+
+  .tableDetail{
+    display: flex;
+    flex-direction: column;
+    max-height: 15em;
+    margin-bottom: 1em;
+    overflow-y: auto;
+  }
+  .priceSection{
+    font-family: "Electrolize";
+  font-weight: bolder;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    label{
+      font-size: 1.3em;
+    }
+    .pastDueExtra{
+      color:red
+    }
+  }
+ 
+}

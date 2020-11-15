@@ -1,0 +1,10 @@
+- Usar difuminado de fondo oscuro para poder diferenciarlo de la barra del navegador que también será oscura.
+
+- Usar tabla de https://arwes.dev/ para la tabla de alquileres de películas, se verán: 
+  - Título Película  -  Orden creada en   -   Día de Llegada  -   Día que debe Devolverse  -   Día de Devolución Película
+
+- Frames de https://arwes.dev/, cuando tenemos varios botones, por ejemplo, los de información de películas, cada botón tendrá un frame que se activará cuando se le de al botón, además de rellenarse el interior de la palabra, ya que los botones no seleccionados solo se verá el contorno de sus letras, no el interior.
+
+- Blockquote de https://arwes.dev/ para el título de la película en la página de información de la película.
+
+- En la tabla de admin, para identificar al user (requisito de ver todas las órdenes de todos los usuarios), poner su email. 

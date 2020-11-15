@@ -1,0 +1,114 @@
+.notification {
+  position: absolute;
+  z-index: 7;
+  height: auto;
+  display: flex;
+}
+
+.notification-container {
+  position: fixed;
+  display: flex;
+  top: 1em;
+  right: 1em;
+  flex-direction: column;
+  max-width: 80em;
+  min-width: 22em;
+  max-height: 80vh;
+}
+
+.notification-wrapper {
+  margin-bottom: 1em;
+}
+
+.notification-body {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  margin-right: 2em;
+
+ 
+}
+
+.notification-icon {
+  display: flex;
+  padding-left: 1em;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-shadow: 2px 2px 5px gray !important;
+}
+
+.notification-message {
+  display: flex;
+  flex-direction: column;
+  text-shadow: 2px 2px 5px gray !important;
+}
+
+.notification-title {
+  padding-top: 0.5em;
+  margin-bottom: 0.5em;
+  width: 100%;
+  padding-left: 1em;
+}
+
+.error-icon-color {
+  color: #ff1f1f;
+  animation: svg-shadow-error 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-error {
+    from {
+      filter: drop-shadow(0 0 0.5em #ff6e6e) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #ff6e6e) 
+    }
+  }
+}
+.warning-icon-color {
+  color: #ffc124;
+  animation: svg-shadow-warning 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-warning {
+    from {
+      filter: drop-shadow(0 0 0.5em #ffde8a) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #ffde8a)
+    }
+  }
+}
+.success-icon-color {
+  color: #4cb827;
+  animation: svg-shadow-success 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-success {
+    from {
+      filter: drop-shadow(0 0 0.5em #aaff8c) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #aaff8c) 
+    }
+  }
+}
+
+.info-icon-color {
+  animation: svg-shadow-info 0.7s ease-in-out infinite alternate;
+  @keyframes svg-shadow-info {
+    from {
+      filter: drop-shadow(0 0 0.5em #70c4ff) 
+    }
+
+    to {
+      filter: drop-shadow(0 0 1em #70c4ff) 
+    }
+  }
+}
+.notification-display-block {
+  display: flex;
+}
+
+.notification-display-none {
+  display: none;
+}

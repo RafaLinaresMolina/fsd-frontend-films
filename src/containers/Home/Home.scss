@@ -1,0 +1,73 @@
+.imagen1 {
+  background-image: url("https://eloutput.com/app/uploads-eloutput.com/2020/07/netflix-como-sabe-gustos.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+.imagen2 {
+  background-image: url("https://media.vandal.net/m/2-2020/2020241333745_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+.imagen3 {
+  background-image: url("https://www.comprarsmarttv.online/wp-content/uploads/2019/11/Los-mejores-sitios-web-para-ver-series-online-gratis-1024x565.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+.imagen4 {
+  background-image: url("https://minilua.com/wp-content/uploads/2019/11/Conhe%C3%A7a-7-sites-para-assistir-s%C3%A9ries-online-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.imgCarrusel {
+  width: 100%;
+  height: 100vh;
+  opacity: 15%;
+  z-index: -1;
+  position: fixed;
+}
+
+.header-home {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  .logo {
+    user-select: none;
+    margin-top: 1em;
+    font-size: 5em;
+    font-weight: 800;
+    font-family: "Electrolize", sans-serif;
+    text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: "Nova Square", cursive;
+  text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+  margin-top: 5em;
+  .hole {
+    width: 5em;
+  }
+}
+
+.phrase {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+  font-family: "Electrolize", sans-serif;
+  text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+  margin-top: 5em;
+}
