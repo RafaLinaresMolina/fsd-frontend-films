@@ -3,23 +3,40 @@ import Catalog from "../../components/Catalog/Catalog";
 import { Content, Header } from "arwes";
 import Footer from "../../components/Footer/Footer";
 import "./ClientZone.scss";
+<<<<<<< HEAD
+import HeaderComponent from "../../components/Header/HeaderComponent";
+=======
+import { useEffect } from "react";
+import { getAllFilms } from "../../redux/actions/film";
+import { ERROR_NOTIFICATION } from "../../redux/types/notificationTypes";
+>>>>>>> 6f59cccf0e774da5371ef3228edb0170f4406445
 function ClientZone(props) {
+
+  useEffect(() => {
+    getAllFilms().catch(err => props.dispatch({
+      type: ERROR_NOTIFICATION,
+      payload: {
+        notification: {
+          title: "ERROR RETRIVING FILMS!",
+          msg: err.message,
+        },
+        show:true
+      },
+    }))
+  }, [])
+
   return (
     <div className="clientZone">
       <Content>
-        <div className="header">
-          <Header animate>
-            <div className="headerLogo">
-              <h1>GEEKFLIX - WELLCOME {props.user?.name}</h1>
-            </div>
-          </Header>
+        <div className="headerWrapper">
+          <HeaderComponent />
         </div>
         
         <div className="contentClient">
-          <Catalog title={"Search result "} content={props} showAllways={false} />
-          <Catalog title={`Actor: ${""} `} content={props} showAllways={false} />
-          <Catalog title={`Genre: ${""} `} content={props} showAllways={false} />
-          <Catalog title={"All Films"} content={props} />
+          <Catalog title={"Search result "} content={props.filmsByTitle} showAllways={false} />
+          <Catalog title={`Actor: ${""} `} content={props.filmsByActor} showAllways={false} />
+          <Catalog title={`Genre: ${""} `} content={props.filmsByGenre} showAllways={false} />
+          <Catalog title={"All Films"} content={props.films} showAllways={true}/>
         </div>
 
         <Footer />
@@ -31,6 +48,10 @@ function ClientZone(props) {
 const mapStateToProps = (state) => {
   return {
     user: state.userReducer.user,
+    films: state.filmReducer.films,
+    filmsByTitle: state.filmReducer.filmsByTitle,
+    filmsByActor: state.filmReducer.filmsByActor,
+    filmsByGenre: state.filmReducer.filmsByGenre,
   };
 };
 

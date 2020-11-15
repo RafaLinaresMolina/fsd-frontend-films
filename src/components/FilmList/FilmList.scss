@@ -4,11 +4,10 @@
   flex-direction: row;
   overflow: hidden;
   .movieListContainer {
-    
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    
+
     .frames {
       display: flex;
       max-width: 18em;
@@ -26,25 +25,139 @@
   }
 }
 
-.theList{
+.theList {
   height: 100%;
   overflow: hidden;
 }
-
 
 .frames:hover {
   animation: shadow 0.7s ease-in-out infinite alternate;
   @keyframes shadow {
     from {
-      filter: drop-shadow(0 0 1.5em #70c4ff) 
+      filter: drop-shadow(0 0 1.5em #70c4ff);
     }
 
     to {
-      filter: drop-shadow(0 0 1em #70c4ff) 
+      filter: drop-shadow(0 0 1em #70c4ff);
     }
   }
 }
 
 .frames > img {
   margin: unset !important;
+}
+
+.content {
+  margin-top: 40px;
+  height: 300px;
+  position: relative;
+}
+
+.background {
+  display: flex;
+  height: 100%;
+}
+
+.left {
+  background: black;
+  width: 30%;
+  position: relative;
+}
+
+.left:before {
+  content: "";
+  position: absolute;
+  background-image: linear-gradient(to right, #000, transparent);
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 275px;
+}
+
+.right {
+  background: green;
+  width: 70%;
+}
+
+.content-container {
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px;
+}
+
+.detailFilm {
+  width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 1em;
+
+  .detailFilmWrapper {
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+  }
+
+  .detailHeaderWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+
+    .titleWrapper {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
+    .releaseDateWrapper {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
+  }
+  .synopsisQuote {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+  }
+  .roster {
+    display: flex;
+    flex-direction: row;
+
+    .actorsRoster {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      width: 80%;
+      padding: 1em;
+  
+      .imgFrame{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      
+    }
+
+    .genreRoster{
+      margin: 1em;
+      display: flex;
+      flex-direction: column;
+      width: 20%;}
+  }
+
+  .controlWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.nameFrame{
+  white-space: nowrap;
 }
