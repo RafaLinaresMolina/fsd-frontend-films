@@ -6,26 +6,21 @@ import FlatList from "flatlist-react";
 import FilmDetail from "../FilmDetail/FilmDetail";
 import { getAllFilms } from "../../redux/actions/film";
 import { ERROR_NOTIFICATION } from "../../redux/types/notificationTypes";
+import CloseIcon from "mdi-react/CloseIcon";
 function FilmList(props) {
   const [selectedFilm, setSelectedFilm] = useState({});
-
-  const selectLayer = (movie) => {
-    return movie.stock && movie.status
-      ? { layer: "primary", filter: "none" }
-      : { layer: "disabled", filter: "grayscale(100%)" };
-  };
 
   const renderFilmDetail = (film, id) => {
     return (
       <FilmDetail key={id} movie={film} setSelectedFilm={setSelectedFilm} />
     );
-  }
+  };
 
   const fetchFilms = async () => {
     // this is simple example but most of good paginated apis will give you total items count and offset information
-    try{
+    try {
       await getAllFilms();
-    }catch(err){
+    } catch (err) {
       props.dispatch({
         type: ERROR_NOTIFICATION,
         payload: {
@@ -33,12 +28,11 @@ function FilmList(props) {
             title: "ERROR RETRIVING FILMS!",
             msg: err.message,
           },
-          show:true
+          show: true,
         },
       });
     }
- 
-}
+  };
 
   return (
     <div className="theList">
@@ -47,18 +41,30 @@ function FilmList(props) {
           <FlatList
             list={props.content?.rows}
             renderItem={renderFilmDetail}
-            renderWhenEmpty={() => <Loading className='loadingWrapper' animate/> }
+            renderWhenEmpty={() => (
+              <Loading className="loadingWrapper" animate />
+            )}
             hasMoreItems={props.films.count}
-            loadMoreItems={async() => await fetchFilms}
+            loadMoreItems={async () => await fetchFilms}
           />
-
         </div>
       </div>
-      <div className={`detailFilm ${ selectedFilm?.id ? "notification-display-block" : "notification-display-none" }`}  >
-        <div className="detailFilmWrapper" style={{ backgroundImage: `url(${selectedFilm.img_landscape}` }}>
-          <Frame anim corners={4} layer={selectLayer(selectedFilm).layer}>
+      <div
+        className={`detailFilm ${
+          selectedFilm?.id
+            ? "notification-display-block"
+            : "notification-display-none"
+        }`}
+      >
+        <div
+          className="detailFilmWrapper"
+          style={{ backgroundImage: `url(${selectedFilm.img_landscape}` }}
+        >
+          <Frame anim corners={4}>
             <Content style={{ padding: "1em" }}>
-              <Button onClick={() => setSelectedFilm({})}> CLOSE </Button>
+              <Button onClick={() => setSelectedFilm({})}>
+                <CloseIcon className="verticalAlignIcons" />
+              </Button>
               <div className="detailHeaderWrapper">
                 <div className="titleWrapper">
                   <h1>{selectedFilm.original_title}</h1>
@@ -66,13 +72,14 @@ function FilmList(props) {
 
                 <div className="releaseDateWrapper">
                   <h3>
-                    RELEASE DATE: {new Date(selectedFilm.release_date).toLocaleDateString()}
+                    RELEASE DATE:{" "}
+                    {new Date(selectedFilm.release_date).toLocaleDateString()}
                   </h3>
                 </div>
               </div>
 
               <div className="synopsisQuote">
-                <Frame anim corners={4} style={{ padding: "1em" }} layer={selectLayer(selectedFilm).layer} >
+                <Frame anim corners={4} style={{ padding: "1em" }}>
                   <h3>Synopsis:</h3>
                   <Blockquote>{selectedFilm.synopsis}</Blockquote>
                 </Frame>
@@ -83,7 +90,7 @@ function FilmList(props) {
                   <h3>Actors:</h3>
                   {selectedFilm.Actors?.map((actor) => {
                     return (
-                      <Frame corners={4} style={{marginBottom: '1em'}}>
+                      <Frame corners={4} style={{ marginBottom: "1em" }}>
                         <Image
                           anim
                           animate
@@ -91,7 +98,6 @@ function FilmList(props) {
                             maxWidth: "7em",
                             margin: "1em",
                           }}
-                          layer={selectLayer(selectedFilm).layer}
                           resources={actor.img_portrait}
                         >
                           {actor.name} {actor.last_name}
@@ -109,9 +115,13 @@ function FilmList(props) {
               </div>
               <div className="controlWrapper">
                 {props.user?.creditCard ? (
-                  <Button>Alquilar</Button>
+                  selectedFilm.stock ? (
+                    <Button>Alquilar</Button>
+                  ) : (
+                    <h4 style={{ userSelect: "none" }}>OUT OF STOCK</h4>
+                  )
                 ) : (
-                  <Blockquote layer="alert">
+                  <Blockquote layer="alert" style={{ userSelect: "none" }}>
                     You need a credit card for rent movies
                   </Blockquote>
                 )}
@@ -125,8 +135,7 @@ function FilmList(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.userReducer.user,
-            films: state.filmReducer.films };
+  return { user: state.userReducer.user, films: state.filmReducer.films };
 };
 
 export default connect(mapStateToProps)(FilmList);
