@@ -1,8 +1,12 @@
 import React, { Component, useEffect, useState } from 'react';
 import FilmList from '../FilmList/FilmList';
 import {useHistory} from 'react-router-dom';
+import {Button} from 'arwes';
 import axios from 'axios';
 import { getFilmsByName } from '../../redux/actions/film';
+import './SearchFilm.scss';
+import MagnifyIcon from 'mdi-react/MagnifyIcon';
+
 
 const Search = (props) =>{
   
@@ -32,19 +36,18 @@ try { await getFilmsByName(search)
 
       return(
             <form onSubmit={handleSubmit}>
-              {search}
-                <div className="field has-addons">
+                <div className="field-search">
                     <div className="control">
                         <input 
-                        className="input"
+                        className="inputSearch"
                         onChange={eventHandler}
                         type="text" 
-                        placeholder="Movie to Search..." />
+                        />
                     </div>
                     <div className="control">
-                        <button className="button is-info">
-                            Search
-                        </button>
+                  <Button className="button is-info" >
+                  <MagnifyIcon className='verticalAlignIcons'/>Search
+                        </Button>
                     </div>
                 </div>
             </form>
