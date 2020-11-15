@@ -1,33 +1,37 @@
-.wrapperContent {
-  display: flex;
-  width: max-content;
-  flex-direction: row;
-  overflow: hidden;
-  .movieListContainer {
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-
-    .frames {
-      display: flex;
-      max-width: 18em;
-      padding: 1em;
-      user-select: none;
-      cursor: pointer;
-    }
-
-    .glassPannel {
-      position: absolute;
-      z-index: 4;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
 .theList {
   height: 100%;
-  overflow: hidden;
+
+  .loadingWrapper {
+    position: absolute;
+    top: 0;
+    left: 50;
+  }
+  .wrapperContent {
+    display: grid;
+    flex-direction: row;
+    overflow-x: scroll;
+    .movieListContainer {
+      display: flex;
+      flex-direction: row;
+      width: max-content;
+      position: static;
+      
+      .frames {
+        display: flex;
+        max-width: 18em;
+        padding: 1em;
+        user-select: none;
+        cursor: pointer;
+      }
+
+      .glassPannel {
+        position: absolute;
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
 
 .frames:hover {
@@ -51,6 +55,7 @@
   margin-top: 40px;
   height: 300px;
   position: relative;
+  margin-bottom: 3em;
 }
 
 .background {
@@ -92,14 +97,17 @@
 .detailFilm {
   width: 100%;
   height: auto;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-bottom: 1em;
+  position: relative;
 
   .detailFilmWrapper {
+    position: static;
+    margin-top: 1em;
     padding: 1em;
     width: 100%;
     height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
   .detailHeaderWrapper {
@@ -130,26 +138,25 @@
 
     .actorsRoster {
       display: flex;
+      margin-right: 1em;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-evenly;
       width: 80%;
-      padding: 1em;
-  
-      .imgFrame{
+
+      .imgFrame {
         display: flex;
         flex-direction: row;
         justify-content: center;
       }
-
-      
     }
 
-    .genreRoster{
-      margin: 1em;
+    .genreRoster {
+      margin-left: 1em;
       display: flex;
       flex-direction: column;
-      width: 20%;}
+      width: 20%;
+    }
   }
 
   .controlWrapper {
@@ -158,6 +165,6 @@
     align-items: center;
   }
 }
-.nameFrame{
+.nameFrame {
   white-space: nowrap;
 }

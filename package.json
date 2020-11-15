@@ -10,6 +10,7 @@
     "antd": "^4.8.2",
     "arwes": "^1.0.0-alpha.5",
     "axios": "^0.21.0",
+    "flatlist-react": "^1.4.3",
     "mdi-react": "^7.4.0",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",

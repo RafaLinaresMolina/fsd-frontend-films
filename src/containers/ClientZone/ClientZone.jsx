@@ -34,7 +34,7 @@ function ClientZone(props) {
         
         <div className="contentClient">
           <Catalog title={"Search result "} content={props.filmsByTitle} showAllways={false} />
-          <Catalog title={`Actor: ${""} `} content={props.filmsByActor} showAllways={false} />
+          <Catalog title={`Actor: ${""} `} content={props.films} showAllways={true} />
           <Catalog title={`Genre: ${""} `} content={props.filmsByGenre} showAllways={false} />
           <Catalog title={"All Films"} content={props.films} showAllways={true}/>
         </div>

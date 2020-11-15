@@ -1,9 +1,12 @@
-import { Blockquote, Button, Content, Frame, Image } from "arwes";
+import { Blockquote, Button, Content, Frame, Image, Loading } from "arwes";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import "./FilmList.scss";
+import FlatList from "flatlist-react";
+import FilmDetail from "../FilmDetail/FilmDetail";
+import { getAllFilms } from "../../redux/actions/film";
+import { ERROR_NOTIFICATION } from "../../redux/types/notificationTypes";
 function FilmList(props) {
-
   const [selectedFilm, setSelectedFilm] = useState({});
 
   const selectLayer = (movie) => {
@@ -12,45 +15,47 @@ function FilmList(props) {
       : { layer: "disabled", filter: "grayscale(100%)" };
   };
 
+  const renderFilmDetail = (film, id) => {
+    return (
+      <FilmDetail key={id} movie={film} setSelectedFilm={setSelectedFilm} />
+    );
+  }
+
+  const fetchFilms = async () => {
+    // this is simple example but most of good paginated apis will give you total items count and offset information
+    try{
+      await getAllFilms();
+    }catch(err){
+      props.dispatch({
+        type: ERROR_NOTIFICATION,
+        payload: {
+          notification: {
+            title: "ERROR RETRIVING FILMS!",
+            msg: err.message,
+          },
+          show:true
+        },
+      });
+    }
+ 
+}
+
   return (
     <div className="theList">
       <div className="wrapperContent">
         <div className="movieListContainer">
-          {props.content?.rows.map((movie) => (
-            <div className="frames" onClick={() => setSelectedFilm(movie)}>
-              <Frame
-                anim
-                corners={4}
-                style={{ padding: "1em" }}
-                layer={selectLayer(movie).layer}
-              >
-                <div className="glassPannel"></div>
-                <Image
-                  animate
-                  style={{
-                    maxWidth: "13em",
-                    filter: selectLayer(movie).filter,
-                    margin: "0",
-                  }}
-                  layer={selectLayer(movie).layer}
-                  resources={movie.img_portrait}
-                >
-                  {movie.original_title}
-                </Image>
-              </Frame>
-            </div>
-          ))}
+          <FlatList
+            list={props.content?.rows}
+            renderItem={renderFilmDetail}
+            renderWhenEmpty={() => <Loading className='loadingWrapper' animate/> }
+            hasMoreItems={props.films.count}
+            loadMoreItems={async() => await fetchFilms}
+          />
+
         </div>
       </div>
-      <div
-        className={`detailFilm ${
-          selectedFilm?.id
-            ? "notification-display-block"
-            : "notification-display-none"
-        }`}
-        style={{ backgroundImage: `url(${selectedFilm.img_landscape}` }}
-      >
-        <div className="detailFilmWrapper">
+      <div className={`detailFilm ${ selectedFilm?.id ? "notification-display-block" : "notification-display-none" }`}  >
+        <div className="detailFilmWrapper" style={{ backgroundImage: `url(${selectedFilm.img_landscape}` }}>
           <Frame anim corners={4} layer={selectLayer(selectedFilm).layer}>
             <Content style={{ padding: "1em" }}>
               <Button onClick={() => setSelectedFilm({})}> CLOSE </Button>
@@ -61,19 +66,13 @@ function FilmList(props) {
 
                 <div className="releaseDateWrapper">
                   <h3>
-                    RELEASE DATE:{" "}
-                    {new Date(selectedFilm.release_date).toLocaleDateString()}
+                    RELEASE DATE: {new Date(selectedFilm.release_date).toLocaleDateString()}
                   </h3>
                 </div>
               </div>
 
               <div className="synopsisQuote">
-                <Frame
-                  anim
-                  corners={4}
-                  style={{ padding: "1em" }}
-                  layer={selectLayer(selectedFilm).layer}
-                >
+                <Frame anim corners={4} style={{ padding: "1em" }} layer={selectLayer(selectedFilm).layer} >
                   <h3>Synopsis:</h3>
                   <Blockquote>{selectedFilm.synopsis}</Blockquote>
                 </Frame>
@@ -84,19 +83,19 @@ function FilmList(props) {
                   <h3>Actors:</h3>
                   {selectedFilm.Actors?.map((actor) => {
                     return (
-                      <Frame corners={4}>
-                        
-                          <Image
-                            anim
-                            animate
-                            style={{
-                              maxWidth: "7em",
-                              margin: "1em",
-                            }}
-                            layer={selectLayer(selectedFilm).layer}
-                            resources={actor.img_portrait}
-                          >{actor.name} {actor.last_name}</Image>
-                        
+                      <Frame corners={4} style={{marginBottom: '1em'}}>
+                        <Image
+                          anim
+                          animate
+                          style={{
+                            maxWidth: "7em",
+                            margin: "1em",
+                          }}
+                          layer={selectLayer(selectedFilm).layer}
+                          resources={actor.img_portrait}
+                        >
+                          {actor.name} {actor.last_name}
+                        </Image>
                       </Frame>
                     );
                   })}
@@ -107,7 +106,6 @@ function FilmList(props) {
                     return <Blockquote>{genre.name} </Blockquote>;
                   })}
                 </div>
-                
               </div>
               <div className="controlWrapper">
                 {props.user?.creditCard ? (
@@ -127,7 +125,8 @@ function FilmList(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.userReducer.user };
+  return { user: state.userReducer.user,
+            films: state.filmReducer.films };
 };
 
 export default connect(mapStateToProps)(FilmList);
