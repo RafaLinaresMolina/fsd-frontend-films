@@ -39,23 +39,23 @@ Geekflix is a movie rental website where clients can register and rent movies, y
 
 ## Views
 
-### Home page
+### Home page 🏠
 If the user is not logged it's always returned. When registering and logging in, the user must fill in all the fields or an error will appear.
 ![]()
 
-### Dashboard page
+### Dashboard page 📋
 This page can only be viewed by clients, who can watch all the films and rent them.
 ![]()
 
-### Searcher
+### Searcher 🔎
 Users can search for movies by title and click on them to obtain information and rent them. 
 ![]()
 
-### User page
+### User page 👤
 Users will be able to see their information and the table with all the orders and the corresponding information and they can see details of those orders.
 ![]()
 
-### Admin page
+### Admin page 🔒
 The administrators will be able to see their information and a table where all the orders of all the users and their respective information come out and update the orders.
 ![]()
 
