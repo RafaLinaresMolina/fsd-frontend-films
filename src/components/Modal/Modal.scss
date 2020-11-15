@@ -11,10 +11,9 @@
 
 .modal-main {
   position:fixed;
-  border-radius: 1em;
   display: flex;
   flex-direction: column;
-  min-height: 40vh;
+  height: auto;
   max-height: 80vh;
   z-index: 5;
   top:50%;
@@ -32,7 +31,6 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 1em;
 } 
 
 .modal-body{
@@ -46,12 +44,9 @@
 
 .modal-footer{
   display: flex;
-  min-height: 1.5em;
-  margin-top: 1em;
   flex-direction: column;
   justify-content: center;
   align-items: center; 
-  border-radius: 1em;
 }
 
 .modal-default{
