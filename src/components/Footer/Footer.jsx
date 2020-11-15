@@ -10,8 +10,8 @@ function ClientZone() {
           </div>
           <div className="footerContent">
             
-            <span>
-              A masterpice brought to you by:{" "}
+            <span className="masterpiece">
+              A masterpiece brought to you by:{" "}
               <Link target="_blank" href="https://github.com/Agredas">
                 {" "}
                 Andrea Ágredas{" "}

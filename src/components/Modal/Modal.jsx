@@ -1,7 +1,7 @@
 import { Button, createTheme, Project, ThemeProvider, Words } from "arwes";
 import React, { useCallback, useEffect } from "react";
 import "./Modal.scss";
-import CloseIcon from 'mdi-react/CloseIcon';
+import CloseIcon from "mdi-react/CloseIcon";
 
 function Modal(props) {
   const showHideClassName = props.show
@@ -23,8 +23,9 @@ function Modal(props) {
   return (
     <div className={showHideClassName}>
       <ThemeProvider theme={createTheme(props.theme)}>
-        <section className="modal-main">
-          <Project animate header={props.title} icon={props.icon}>
+       
+          <section className="modal-main">
+          <Project animate header={props.title} icon={props.icon} style={{height: 'max-content'}}>
             {(anim) => (
               <>
                 <div animate show={anim.entered} className="modal-body">
@@ -33,14 +34,14 @@ function Modal(props) {
                 <div className="modal-footer">
                   <Button onClick={props.handleClose}>
                     <span role="img" aria-label="Cancel Order">
-                      < CloseIcon className="verticalAlignIcons"/> Close
+                      <CloseIcon className="verticalAlignIcons" /> Close
                     </span>
                   </Button>
                 </div>
               </>
             )}
-          </Project>
-        </section>
+            </Project>
+          </section>
       </ThemeProvider>
     </div>
   );
