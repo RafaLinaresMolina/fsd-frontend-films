@@ -3,15 +3,11 @@ import Catalog from "../../components/Catalog/Catalog";
 import { Content, Header } from "arwes";
 import Footer from "../../components/Footer/Footer";
 import "./ClientZone.scss";
-<<<<<<< Updated upstream
 import HeaderComponent from "../../components/Header/HeaderComponent";
-=======
 import { useEffect } from "react";
-import { getAllFilms } from "../../redux/actions/film";
-import { ERROR_NOTIFICATION } from "../../redux/types/notificationTypes";
-import HeaderComponent from "../../components/Header/HeaderComponent";
+import {getAllFilms} from "../../redux/actions/film";
+import {ERROR_NOTIFICATION} from "../../redux/types/notificationTypes";
 
->>>>>>> Stashed changes
 function ClientZone(props) {
 
   useEffect(() => {
