@@ -27,7 +27,7 @@ function ClientZone(props) {
         <div className="header">
           <Header animate>
             <div className="headerLogo">
-              <h1>GEEKFLIX - WELLCOME {props.user?.name}</h1>
+              <h1>GEEKFLIX - WELCOME {props.user?.name}</h1>
             </div>
           </Header>
         </div>
