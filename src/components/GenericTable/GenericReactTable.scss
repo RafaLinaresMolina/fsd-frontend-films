@@ -6,7 +6,6 @@ table {
   thead {
     tr {
       th {
-        color: #a7d129;
         text-align: center;
         font-family: 'Open Sans', sans-serif;
         font-weight: 400;
@@ -26,29 +25,6 @@ table {
       vertical-align: middle !important;
       text-align: center;
       padding: 1em !important;
-    }
-    td:nth-child(1) {
-      color: #feb72b;
-    }
-
-    td:nth-child(2) {
-      color: #b8de6f;
-    }
-
-    td:nth-child(3) {
-      color: #32afa9;
-    }
-
-    td:nth-child(4) {
-      color: #c3aed6;
-    }
-
-    td:nth-child(5) {
-      color: #feb72b;
-    }
-
-    td:nth-child(6) {
-      color: #feb72b;
     }
   }
 }

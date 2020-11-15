@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import Profile from "../../containers/Profile/Profile";
 import Catalog from "../../components/Catalog/Catalog";
-import { Content } from "arwes";
+import { Content, Header } from "arwes";
 import Footer from "../../components/Footer/Footer";
 import "./ClientZone.scss";
 import HeaderComponent from "../../components/Header/HeaderComponent";
@@ -12,10 +11,12 @@ function ClientZone(props) {
         <div className="headerWrapper">
           <HeaderComponent />
         </div>
-
+        
         <div className="contentClient">
-          <Catalog title={"Ultimos estrenos"} />
-          <Catalog title={"Ciencia ficción"} />
+          <Catalog title={"Search result "} content={props} showAllways={false} />
+          <Catalog title={`Actor: ${""} `} content={props} showAllways={false} />
+          <Catalog title={`Genre: ${""} `} content={props} showAllways={false} />
+          <Catalog title={"All Films"} content={props} />
         </div>
 
         <Footer />

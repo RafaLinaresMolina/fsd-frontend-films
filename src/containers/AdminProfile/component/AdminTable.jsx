@@ -1,4 +1,4 @@
-import { Button, Table, Words } from "arwes";
+import { Button, Frame, Table, Words } from "arwes";
 import { connect } from "react-redux";
 import {getAllOrders} from '../../../redux/actions/admin'
 import GenericReactTable from "../../../components/GenericTable/GenericReactTable.jsx";
@@ -7,16 +7,31 @@ import Modal from "../../../components/Modal/Modal";
 import MovieOpenIcon from 'mdi-react/MovieOpenIcon'
 import UserIcon from 'mdi-react/UserIcon';
 import OrderDetail from "../../../components/OrderDetail/OrderDetail";
+import ProfileDetail from "../../Profile/ProfileDetail";
+import MagnifyIcon from 'mdi-react/MagnifyIcon'
+import UpdateIcon from 'mdi-react/UpdateIcon'
+import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon'
+import CheckIcon from 'mdi-react/CheckIcon'
+import ArrowRightIcon from 'mdi-react/ArrowRightIcon'
+import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
+import { updateOrderStatus } from "../../../redux/actions/order";
+import { ERROR_NOTIFICATION } from "../../../redux/types/notificationTypes";
+import { redTheme } from "../../../themes/themes";
+import './AdminTable.scss'
 const AdminTable = (props) => {
   useEffect(() => {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNjA1MDA4NDc5LCJleHAiOjE2MDc2MDA0Nzl9.Is-neFdHrOHDErX68H5vOLFlNjzJDpAE5mw-6Pz2Zbs";
-      getAllOrders(token).catch(err => console.log(err))
+    if(!props.allOrders?.length)
+    getAllOrders(props.user.token).catch(err => console.log(err))
   }, [])
 
-  const oerderHeaders = [
+  const oerderHeaders = [   
     {
       Header: "Orders",
       columns: [
+        {
+          Header: "Order #",
+          accessor: "id"
+        },
         {
           Header: "User",
           accessor: (row, i) => {
@@ -27,33 +42,77 @@ const AdminTable = (props) => {
                   showModalDetailUser()
                   setRow(row)}
                 }>
-                  <i className="mdi mdi-chemical-weapon" /> {row.User.email}
+                  <AccountOutlineIcon className="verticalAlignIcons"/> {row.User.email}
                 </Button>
               </>
             );
           },
         },
         {
-          Header: "Created At",
-          accessor: "createdAt",
+          Header: "Shiped",
+          accessor: "arrivedAtClient",
           Cell: ({ value }) => {
             return value ? (
               <span style={{ whiteSpace: "nowrap" }}>
                 {" "}
-                {`${new Date(value).toLocaleDateString("es-ES")} - ${new Date(
-                  value
-                ).toLocaleTimeString("es-ES")}`}
+                {`${new Date(value).toLocaleDateString("es-ES")}`}
               </span>
             ) : (
               ""
             );
           },
         },
-    
+        {
+          Header: "Should Return",
+          accessor: "recomendedReturnDate",
+          Cell: ({ value }) => {
+            return value ? (
+              <span style={{ whiteSpace: "nowrap" }}>
+                {" "}
+                {`${new Date(value).toLocaleDateString("es-ES")}`}
+              </span>
+            ) : (
+              ""
+            );
+          },
+        },
+        {
+          Header: "Returned",
+          accessor: "realReturnDate",
+          Cell: ({ value }) => {
+            return value ? (
+              <span style={{ whiteSpace: "nowrap" }}>
+                {" "}
+                {`${new Date(value).toLocaleDateString("es-ES")}`}
+              </span>
+            ) : (
+              ""
+            );
+          },
+        },
+        {
+          Header: "Re-Stocked",
+          accessor: "reStoked",
+          Cell: ({ value }) => {
+            return value ? (
+              <span style={{ whiteSpace: "nowrap" }}>
+                {" "}
+                {`${new Date(value).toLocaleDateString("es-ES")}`}
+              </span>
+            ) : (
+              ""
+            );
+          },
+        },
         {
           Header: "Status",
           accessor: "status",
         },
+      ],
+    },
+    {
+      Header: "Actions",
+      columns: [
         {
           Header: "Details",
           accessor: (row, i) => {
@@ -63,50 +122,126 @@ const AdminTable = (props) => {
                   showModalDetailOrder()
                   setRow(row)}
                 }>
-                  <i className="mdi mdi-chemical-weapon" /> Details
-                </Button>
+                  < MagnifyIcon className="verticalAlignIcons"/> </Button>
               </>
             );
           },
         },
-      ],
-    },
-    
+        {
+          Header: "Update",
+          accessor: (row, i) => {
+            return (
+              row.status !== 'stocked' ? <>
+                <Button animate onClick={() => {
+                  showModalUpdateOrder()
+                  setRow(row)}
+                }>
+                  < UpdateIcon className="verticalAlignIcons"/> </Button>
+              </> : ""
+            );
+          },
+        },
+      ]
+    }
   ];
 
+  const setColors = (value) => {
+    return value ? 'pastDueTr' : '';
+  }
+
+  const nextStatus = (status) => {
+    const allStatus = {
+      pending: 'sended',
+      sended: 'client',
+      client: 'returning',
+      returning: 'stocked'
+    }
+    return allStatus[status]
+  }
 
 
   const [row, setRow] = useState({});
 
   const [showDetailUser, setShowDetailUser] = useState(false);
 
-  const showModalDetailUser = () => {setShowDetailUser(true);};
-  const hideModalDetailUser = () => {setShowDetailUser(false);};
+  const showModalDetailUser = () => {setShowDetailUser(true)};
+  const hideModalDetailUser = () => {setShowDetailUser(false)};
 
   const [showDetailOrder, setShowDetailOrder] = useState(false);
 
-  const showModalDetailOrder = () => {setShowDetailOrder(true);};
-  const hideModalDetailOrder = () => {setShowDetailOrder(false);};
+  const showModalDetailOrder = () => {setShowDetailOrder(true)};
+  const hideModalDetailOrder = () => {setShowDetailOrder(false)};
+
+  const [showUpdateOrder, setShowUpdateOrder] = useState(false);
+
+  const showModalUpdateOrder = () => {setShowUpdateOrder(true)};
+  const hideModalUpdateOrder = () => {setShowUpdateOrder(false)};
 
   return (
-    <Table animate>
-      <Modal show={showDetailUser} handleClose={hideModalDetailUser} header={3} title={"User Details"} icon={<UserIcon className='verticalAlignIcons'/>}>
-        <div>
-          <p><Words>Name: {row.User?.name} {row.User?.last_name}</Words></p>
-          <p><Words>Email: {row.User?.email}</Words></p>
+    <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
+      <Table animate>
+        <Modal show={showDetailUser} handleClose={hideModalDetailUser} header={3} title={"User Details"} icon={<UserIcon className='verticalAlignIcons'/>}>
+          <ProfileDetail user={row.User}/>
+        </Modal>
+        <Modal show={showDetailOrder} theme={row.delayCharge ? redTheme : ''} handleClose={hideModalDetailOrder} header={3} title={"Order Details"} icon={<MovieOpenIcon className='verticalAlignIcons'/>}>
+          {row.Films ? <OrderDetail data={row.Films} row={row} price={{charge: row.charge, totalCharge: row.totalCharge, currency: row.currency, delayCharge: row.delayCharge}}/> : ''}
+        </Modal>
+
+        <Modal show={showUpdateOrder} handleClose={hideModalUpdateOrder} header={3} title={"Update Order?"} icon={<MovieOpenIcon className='verticalAlignIcons'/>}>
+          <div style={{padding: "1em"}}>
+            <h3>You will update the order status:</h3>
+            <h4 style={{width: "100%", textAlign: "center"}}> {row.status} < ArrowRightIcon className="verticalAlignIcons"/> {nextStatus(row.status)}</h4>
+            <div style={{display: "flex", justifyContent: 'center' ,alignItems: "center", width: "100%", verticalAlign: "middle"}}>
+            <Button onClick={async () => {
+              try{
+                await updateOrderStatus(row, props.user.token);
+                hideModalUpdateOrder();
+              }catch(err){
+                hideModalUpdateOrder();
+                props.dispatch({
+                  type: ERROR_NOTIFICATION,
+                  payload: {
+                    notification: {
+                      title: "ERROR!",
+                      msg: err.message,
+                    },
+                    show:true
+                  },
+                });
+              }
+            }}>
+              <CheckIcon className="verticalAlignIcons"/> Update
+            </Button>
+            </div>
+            
+          </div>
+        </Modal>
+
+        <GenericReactTable data={props.allOrders} columns={oerderHeaders} setColors={setColors}/>
+        <div className="paginationControls">
+          <div className="leftyButton">
+          <Button onClick={async () => (+props.orderCount > 10 ? await getAllOrders(props.user.token, false, 0) : "")}> <ArrowLeftIcon className="verticalAlignIcons"/> </Button> 
         </div>
-      </Modal>
-      <Modal show={showDetailOrder} handleClose={hideModalDetailOrder} header={3} title={"Order Details"} icon={<MovieOpenIcon className='verticalAlignIcons'/>}>
-        {row.Films ? <OrderDetail data={row.Films} price={{charge: row.charge, totalCharge: row.totalCharge, currency: row.currency}}/> : ''}
-      </Modal>
-      <GenericReactTable data={props.allOrders} columns={oerderHeaders} />
-    </Table>
+        <div className="paginationInfo">
+          Page {+props.orderCount / 10} from {+props.totalOrders / 10}, showing {+props.orderCount} elements of {+props.totalOrders} 
+        </div>
+        <div className="rightyButton">
+        <Button onClick={async () => (+props.orderCount < +props.totalOrders ? await getAllOrders(props.user.token, true, +props.orderCount) : "")}> <ArrowRightIcon className="verticalAlignIcons"/> </Button>
+        </div>
+        </div>
+        
+        
+      </Table>
+    </Frame>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    allOrders: state.adminReducer.allOrders
+    user: state.userReducer.user,
+    allOrders: state.adminReducer.allOrders,
+    orderCount: state.adminReducer.orderCount,
+    totalOrders: state.adminReducer.totalOrders
   }
 }
 

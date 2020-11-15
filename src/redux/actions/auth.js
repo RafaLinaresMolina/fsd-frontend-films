@@ -4,14 +4,13 @@ import store from '../store';
 import { CLEAR_ALL_PROFILE_INFO } from '../types/profileTypes';
 import { CLEAR_ALL_FILMS } from '../types/filmTypes';
 import { CLEAR_ALL_ADMIN_INFO } from '../types/adminTypes';
-import {ERROR_NOTIFICATION, SUCCESS_NOTIFICATION, WARNING_NOTIFICATION} from '../types/notificationTypes';
+import {ERROR_NOTIFICATION, SUCCESS_NOTIFICATION} from '../types/notificationTypes';
 
 
 export const loginAction = async(credentials) => {
     const res = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/login', credentials)
-    localStorage.setItem('authToken', res.data.token);
-    store.dispatch({ type: LOGIN, payload: res.data.token });
-    await getLoggedUser(res.data.token);
+    localStorage.setItem('user', JSON.stringify(res.data.user));
+    store.dispatch({ type: LOGIN, payload: res.data.user });
     store.dispatch({
         type: SUCCESS_NOTIFICATION,
         payload: {
@@ -27,7 +26,7 @@ export const loginAction = async(credentials) => {
 export const getLoggedUser = async(token) => {
     const res = await axios.get(process.env.REACT_APP_BASE_URL + '/auth/logged', {
         headers: {
-            Authorization: `bearer ${token}`
+            Authorization: `Bearer ${token}`
         }
     })
     localStorage.setItem("user", JSON.stringify(res.data));
@@ -35,16 +34,40 @@ export const getLoggedUser = async(token) => {
 }
 
 export const logOut = async(token) => {
-  await axios.get(process.env.REACT_APP_BASE_URL + '/auth/logout', {
-      headers: {
-          Authorization: token
-      }
-  });
-  store.dispatch({ type: CLEAR_ALL_ADMIN_INFO, payload: {} });
-  store.dispatch({ type: CLEAR_ALL_FILMS, payload: {} });
-  store.dispatch({ type: CLEAR_ALL_PROFILE_INFO, payload: {} });
-  store.dispatch({ type: LOGOUT, payload: {} });
-  localStorage.clear();
+  try{
+    await axios.get(process.env.REACT_APP_BASE_URL + '/auth/logout', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    localStorage.clear();
+    store.dispatch({ type: LOGOUT, payload: {} });
+    store.dispatch({ type: CLEAR_ALL_ADMIN_INFO, payload: {} });
+    store.dispatch({ type: CLEAR_ALL_FILMS, payload: {} });
+    store.dispatch({ type: CLEAR_ALL_PROFILE_INFO, payload: {} });
+    store.dispatch({
+      type: SUCCESS_NOTIFICATION,
+      payload: {
+        notification: {
+          title: "LOG OUT.",
+          msg: 'See you soon!',
+        },
+        show: true,
+      },
+    });
+  }catch(err){
+    store.dispatch({
+      type: ERROR_NOTIFICATION,
+      payload: {
+        notification: {
+          title: "ERROR",
+          msg: err.message,
+        },
+        show: true,
+      },
+    });
+  }
+  
 }
 
 export const registerAction = async(body) => {

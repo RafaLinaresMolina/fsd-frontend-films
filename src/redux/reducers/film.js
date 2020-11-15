@@ -1,21 +1,4 @@
 const initialState = {
-  supersearch: {
-    byTitle: {
-      count: 0,
-      stored: 0,
-      rows: [],
-    },
-    byActor: {
-      count: 0,
-      stored: 0,
-      rows: [],
-    },
-    byGenre: {
-      count: 0,
-      stored: 0,
-      rows: [],
-    },
-  },
   films: {
     count: 0,
     stored: 0,
@@ -39,14 +22,6 @@ const initialState = {
 };
 const reducer = (state = initialState, action) => {
   const actions = {
-    SET_SUPERSEARCH: {
-      ...state,
-      supersearch: action.payload,
-    },
-    UPDATE_SUPERSEARCH: {
-      ...state,
-      supersearch: action.payload,
-    },
     SET_FILMS: {
       ...state,
       films: action.payload,
@@ -80,7 +55,11 @@ const reducer = (state = initialState, action) => {
       filmsByActor: action.payload,
     },
     CLEAR_ALL_FILMS: {
-      initialState
+      ...state,
+      films: initialState.films,
+      filmsByTitle: initialState.filmsByTitle,
+      filmsByActor: initialState.filmsByActor,
+      filmsByGenre: initialState.filmsByGenre,
     },
   };
   return Object.keys(actions).includes(action.type)

@@ -1,24 +1,19 @@
 import React, {useState} from 'react';
 import './Login.scss';
 import {connect} from 'react-redux';
-import {getLoggedUser, loginAction} from '../../redux/actions/auth';
-import {ERROR_NOTIFICATION, SUCCESS_NOTIFICATION, WARNING_NOTIFICATION} from '../../redux/types/notificationTypes';
+import { Button } from "arwes";
+import {loginAction} from '../../redux/actions/auth';
+import {ERROR_NOTIFICATION, WARNING_NOTIFICATION} from '../../redux/types/notificationTypes';
+import KeyIcon from 'mdi-react/KeyIcon';
 
 const validationErrorMessages={
   errorEmptyRequired: 'Required fields are empty.',
 };
     
-const doLogin = async (user) =>{
-  try{
-    await loginAction(user);
-  } catch(err) {
-    throw err;
-  }
-};
-
-const validateAndSend = async (props, object) =>{
-  try{
-    if (object.password === "" || object.email === ""){
+const validateAndSend = async (props, credentials) =>{
+  
+    console.log('aaaaaa')
+    if (credentials.password === "" || credentials.email === ""){
       props.dispatch({
         type: WARNING_NOTIFICATION,
         payload: {
@@ -30,21 +25,9 @@ const validateAndSend = async (props, object) =>{
         },
       });
     }else{
-      await doLogin(object);
+      await loginAction(credentials);
     }
-  }catch(err){
-    props.dispatch({
-      type: ERROR_NOTIFICATION,
-      payload: {
-        notification: {
-          title: "Error.",
-          msg: err.response.data.trace,
-        },
-        show: true,
-      },
-    });
-    throw err;
-  }
+  
 };
 
 function Login(props){
@@ -58,50 +41,53 @@ function Login(props){
   };
 
   return (
-    <div>
+    <div className='form-log-reg'>
       <label>
         * Email:
-        <input 
+        <input
+          className="input"
           type="text"
           name="email"
           required
           onChange={eventHandler}
-          placeholder="some@mail.com"
         />
       </label>
       <label>
         * Password:
         <input
+          className="input"
           type="password"
           name="password"
           required
           onChange={eventHandler}
-          placeholder="password"
         />
       </label>
-      <button onClick={async () => {
+
+      <div className="button-log-reg">
+      <Button animate layer="success" className="button-login-size" onClick={async () => {
           try {
             await validateAndSend(props, login);
           } catch (err) {
-            console.log(err);
+            props.dispatch({
+              type: ERROR_NOTIFICATION,
+              payload: {
+                notification: {
+                  title: "Error.",
+                  msg: err.message,
+                },
+                show: true,
+              },
+            });
           }
         }}
       >
+        <KeyIcon className="verticalAlignIcons" />
         {" "}
         Login{" "}
-      </button>
+      </Button>
+      </div>
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    errorNotification: state.notificationReducer.errorNotification,
-    warningNotification: state.notificationReducer.warningNotification,
-    successNotification: state.notificationReducer.successNotification,
-    infoNotification: state.notificationReducer.infoNotification,
-  };
-};
-
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);

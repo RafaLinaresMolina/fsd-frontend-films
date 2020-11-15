@@ -1,8 +1,7 @@
-
+import { Frame } from "arwes";
 import GenericReactTable from "../../components/GenericTable/GenericReactTable.jsx";
-import './OrderDetail.scss'
+import "./OrderDetail.scss";
 const OrderDetail = (props) => {
-
   const orderDetailColumns = [
     {
       Header: "Films",
@@ -10,7 +9,6 @@ const OrderDetail = (props) => {
         {
           Header: "Film Id",
           Cell: ({ row }) => {
-            console.log("VALUE:", row.original.id);
             return row.original.id;
           },
         },
@@ -27,7 +25,7 @@ const OrderDetail = (props) => {
           Cell: ({ row }) => {
             return row.original.OrderFilm.stock;
           },
-        }
+        },
       ],
     },
   ];
@@ -35,21 +33,46 @@ const OrderDetail = (props) => {
   const printCurrency = (value) => {
     const currency = {
       euro: "€",
-      dollar: "$"
-    }
+      dollar: "$",
+    };
 
-    return currency[value] ? currency[value] : "€"
-  }
+    return currency[value] ? currency[value] : "€";
+  };
 
   const currency = printCurrency(props.price.currency);
 
   return (
     <div className="OrderDetail">
-      <GenericReactTable data={props.data} columns={orderDetailColumns} />
-      <div className="priceSection">
-        <label typeof="text"> Price: {props.price.charge} {currency}</label>
-        <label typeof="text"> Total Price: {props.price.charge} {currency}</label>
-      </div>
+      <Frame anim corners={4}  layer={props.layer ? props.layer : "primary" }>
+        <h3>
+          Created at:{" "}
+          {`${new Date(props.row.createdAt).toLocaleDateString(
+            "es-ES"
+          )} - ${new Date(props.row.createdAt).toLocaleTimeString("es-ES")}`}
+        </h3>
+        <div className="tableDetail">
+          <GenericReactTable data={props.data} columns={orderDetailColumns} />
+        </div>
+
+        <div className="priceSection">
+          <label typeof="text">
+            {" "}
+            Price: {props.price.charge} {currency}
+          </label>
+          {props.price.delayCharge ? (
+            <label typeof="text" className="pastDueExtra">
+              {" "}
+              Pastdue Charge:{props.price.delayCharge} {currency}
+            </label>
+          ) : (
+            ""
+          )}
+          <label typeof="text">
+            {" "}
+            Total Price: {props.price.totalCharge} {currency}
+          </label>
+        </div>
+      </Frame>
     </div>
   );
 };
