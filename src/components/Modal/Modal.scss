@@ -20,6 +20,7 @@
   left:50%;
   transform: translate(-50%,-50%);
   background-color: rgba(0, 0, 0, 0.6);
+  
 }
 .modal-exit{
   display: flex;
@@ -40,6 +41,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; 
+  margin-bottom: 1em;
 }
 
 .modal-footer{
