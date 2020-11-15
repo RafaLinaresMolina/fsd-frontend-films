@@ -25,7 +25,7 @@ Geekflix is a movie rental website where clients can register and rent movies, y
 - Heroku
 
 ### Get the Repo
-- git clone: https://github.com/RafaLinaresMolina/fsd-frontend-films/tree/develop
+- git clone: https://github.com/RafaLinaresMolina/fsd-frontend-films/tree/master
 
 ### Add the configuration 
 
@@ -41,23 +41,23 @@ Geekflix is a movie rental website where clients can register and rent movies, y
 
 ### Home page
 If the user is not logged it's always returned. When registering and logging in, the user must fill in all the fields or an error will appear.
-![](video/HomePage.gif)
+![]()
 
 ### Dashboard page
 This page can only be viewed by clients, who can watch all the films and rent them.
-![](video/DashboardPage.gif)
+![]()
 
 ### Searcher
 Users can search for movies by title and click on them to obtain information and rent them. 
-![](video/Searcher.gif)
+![]()
 
 ### User page
 Users will be able to see their information and the table with all the orders and the corresponding information and they can see details of those orders.
-![](video/ProfileUser.gif)
+![]()
 
 ### Admin page
 The administrators will be able to see their information and a table where all the orders of all the users and their respective information come out and update the orders.
-![](video/AdminProfile.gif)
+![]()
 
 ---
 
