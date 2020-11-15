@@ -6,7 +6,7 @@ import store from '../store';
 export const getOrders = async(token) => {
     const res = await axios.get(process.env.REACT_APP_BASE_URL + '/profile/orders', {
         headers: {
-            Authorization: "bearer " + token
+            Authorization: `Bearer ${token}`
         }
     })
     store.dispatch({ type: SET_PROFILE_ORDERS, payload: res.data.rows });
@@ -15,7 +15,7 @@ export const getOrders = async(token) => {
 export const getProfile = async(token) => {
   const res = await axios.get(process.env.REACT_APP_BASE_URL + '/profile/user', {
       headers: {
-          Authorization: token
+          Authorization: `Bearer ${token}`
       }
   })
   store.dispatch({ type: SET_PROFILE, payload: res.data });
@@ -24,7 +24,7 @@ export const getProfile = async(token) => {
 export const updateProfile = async(token, body) => {
   const res = await axios.put(process.env.REACT_APP_BASE_URL + '/profile/', body, {
       headers: {
-          Authorization: token
+          Authorization: `Bearer ${token}`
       }
   })
   store.dispatch({ type: UPDATE_PROFILE, payload: res.data });

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
 
 body {
@@ -13,6 +12,7 @@ body {
 
   scrollbar-color: rgba(122, 224, 255, 0.5) rgba(122, 224, 255, 0.1) !important;
   scrollbar-width: thin;
+
 }
 
 code {

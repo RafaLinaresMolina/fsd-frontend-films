@@ -1,4 +1,4 @@
-import { Content, Frame, Image } from "arwes";
+import { Content } from "arwes";
 import React from "react";
 import FilmList from "../../components/FilmList/FilmList";
 import "./Catalog.scss";

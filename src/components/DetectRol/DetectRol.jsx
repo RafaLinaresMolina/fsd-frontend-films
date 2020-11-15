@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
+import AdminZone from "../../containers/AdminZone/AdminZone";
 import ClientZone from "../../containers/ClientZone/ClientZone";
 
 function DetectRol (props) {
     const cargarVista = (roleId) => {
+      console.log(roleId)
       const layouts = {
-        0: <h1>ADMIN</h1>,
+        0: <AdminZone/>,
         1: <ClientZone/>,
       };
       return layouts[roleId] ? (
@@ -15,7 +17,7 @@ function DetectRol (props) {
     };
   
     return (
-        cargarVista(props.user.rol_id)
+        cargarVista(+props.user.rol_id)
     );
   }
   

@@ -9,6 +9,7 @@ function ClientZone() {
             <h4>GEEKFLIX</h4>
           </div>
           <div className="footerContent">
+            
             <span>
               A masterpice brought to you by:{" "}
               <Link target="_blank" href="https://github.com/Agredas">

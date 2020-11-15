@@ -3,24 +3,17 @@ import './Login.scss';
 import {connect} from 'react-redux';
 import { Button } from "arwes";
 import {loginAction} from '../../redux/actions/auth';
-import {ERROR_NOTIFICATION, SUCCESS_NOTIFICATION, WARNING_NOTIFICATION} from '../../redux/types/notificationTypes';
+import {ERROR_NOTIFICATION, WARNING_NOTIFICATION} from '../../redux/types/notificationTypes';
 import KeyIcon from 'mdi-react/KeyIcon';
 
 const validationErrorMessages={
   errorEmptyRequired: 'Required fields are empty.',
 };
     
-const doLogin = async (user) =>{
-  try{
-    await loginAction(user);
-  } catch(err) {
-    throw err;
-  }
-};
-
-const validateAndSend = async (props, object) =>{
-  try{
-    if (object.password === "" || object.email === ""){
+const validateAndSend = async (props, credentials) =>{
+  
+    console.log('aaaaaa')
+    if (credentials.password === "" || credentials.email === ""){
       props.dispatch({
         type: WARNING_NOTIFICATION,
         payload: {
@@ -32,21 +25,9 @@ const validateAndSend = async (props, object) =>{
         },
       });
     }else{
-      await doLogin(object);
+      await loginAction(credentials);
     }
-  }catch(err){
-    props.dispatch({
-      type: ERROR_NOTIFICATION,
-      payload: {
-        notification: {
-          title: "Error.",
-          msg: err.response.data.trace,
-        },
-        show: true,
-      },
-    });
-    throw err;
-  }
+  
 };
 
 function Login(props){
@@ -87,7 +68,16 @@ function Login(props){
           try {
             await validateAndSend(props, login);
           } catch (err) {
-            console.log(err);
+            props.dispatch({
+              type: ERROR_NOTIFICATION,
+              payload: {
+                notification: {
+                  title: "Error.",
+                  msg: err.message,
+                },
+                show: true,
+              },
+            });
           }
         }}
       >
@@ -100,14 +90,4 @@ function Login(props){
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    errorNotification: state.notificationReducer.errorNotification,
-    warningNotification: state.notificationReducer.warningNotification,
-    successNotification: state.notificationReducer.successNotification,
-    infoNotification: state.notificationReducer.infoNotification,
-  };
-};
-
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);

@@ -3,7 +3,7 @@ import { useTable, useSortBy } from "react-table";
 import "./GenericReactTable.scss";
 
 function GenericReactTable(props) {
-  const data = props.data;
+  const data = props.data ? props.data : [];
   const columns = props.columns;
 
   const {
@@ -49,7 +49,7 @@ function GenericReactTable(props) {
           {rows.map((row) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} className={props.setColors ? props.setColors(row.original.delayCharge) : ''}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>

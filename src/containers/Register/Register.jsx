@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Register.scss';
-import { connect } from 'react-redux';
 import { Button } from "arwes";
 import { registerAction } from '../../redux/actions/auth';
 import { ERROR_NOTIFICATION, SUCCESS_NOTIFICATION, WARNING_NOTIFICATION } from '../../redux/types/notificationTypes';
@@ -123,14 +122,4 @@ function Register(props) {
   )
 }
 
-
-const mapStateToProps = (state) => {
-  return {
-    errorNotification: state.notificationReducer.errorNotification,
-    warningNotification: state.notificationReducer.warningNotification,
-    successNotification: state.notificationReducer.successNotification,
-    infoNotification: state.notificationReducer.infoNotification,
-  };
-};
-
-export default connect(mapStateToProps)(Register);
+export default Register;
