@@ -51,7 +51,7 @@ This page can only be viewed by clients, who can watch all the films and rent th
 Users can search for movies by title and click on them to obtain information and rent them. 
 ![]()
 
-### User page 🚹
+### User page 👤
 Users will be able to see their information and the table with all the orders and the corresponding information and they can see details of those orders.
 ![]()
 
