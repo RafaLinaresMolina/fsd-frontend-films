@@ -5,6 +5,8 @@ import React, {useState} from 'react';
 import Modal from '../../components/Modal/Modal';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import AccountKey from 'mdi-react/AccountKeyIcon'
+import UserAccount from 'mdi-react/CardAccountDetailsIcon';
 
 
 
@@ -45,14 +47,14 @@ return(
     <div className="buttons">
       <div>
         <Button animate onClick={() => {showModalLogin()}}>Login</Button>
-        <Modal show={showLogin} handleClose={hideModalLogin} title={'Login'}>
+        <Modal show={showLogin} handleClose={hideModalLogin} title={'Login'} icon={<AccountKey className='verticalAlignIcons'/>}>
           <Login />
         </Modal>
       </div>
       <div className="hole"></div>
       <div>
         <Button animate onClick={() => {showModalRegister()}}>Register </Button>
-        <Modal show={showRegister} handleClose={hideModalRegister} title={'Register'}>
+        <Modal show={showRegister} handleClose={hideModalRegister} title={'Register'} icon={<UserAccount className='verticalAlignIcons'/>}>
           <Register />
         </Modal>
       </div>
