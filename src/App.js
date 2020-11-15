@@ -9,8 +9,7 @@ import 'antd/dist/antd.css';
 import { LOGIN } from "./redux/types/userTypes";
 import { connect } from "react-redux";
 import DetectRol from "./components/DetectRol/DetectRol";
-import BuscadorFilm from "./components/Buscador/BuscadorFilm";
-import ResultadoFilm from "./components/Buscador/ResultadoFilm";
+import SearchFilm from "./components/Search/SearchFilm";
 
 function App(props) {
   useEffect(() => {
@@ -37,6 +36,7 @@ function App(props) {
                 </Route>
               ) : (
                   <Route exact path="/dashboard">
+                    <SearchFilm></SearchFilm>
                     <DetectRol />
                   </Route>
                 )}
@@ -50,12 +50,7 @@ function App(props) {
           </BrowserRouter>
         </Arwes>
       </ThemeProvider>
-        <div className="col12 mt-4 border-top pt-3"></div>
-        <BuscadorFilm/>
-        <div ClassName="col-12">
-          <ResultadoFilm/>
         </div>
-    </div>
     
   );
 }

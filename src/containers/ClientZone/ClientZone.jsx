@@ -3,7 +3,15 @@ import Catalog from "../../components/Catalog/Catalog";
 import { Content, Header } from "arwes";
 import Footer from "../../components/Footer/Footer";
 import "./ClientZone.scss";
+<<<<<<< Updated upstream
 import HeaderComponent from "../../components/Header/HeaderComponent";
+=======
+import { useEffect } from "react";
+import { getAllFilms } from "../../redux/actions/film";
+import { ERROR_NOTIFICATION } from "../../redux/types/notificationTypes";
+import HeaderComponent from "../../components/Header/HeaderComponent";
+
+>>>>>>> Stashed changes
 function ClientZone(props) {
 
   useEffect(() => {
@@ -27,7 +35,7 @@ function ClientZone(props) {
         </div>
         
         <div className="contentClient">
-          <Catalog title={"Search result "} content={props.filmsByTitle} showAllways={false} />
+          <Catalog title={"Search result "} content={props.filmsByTitle} showAllways={true} />
           <Catalog title={`Actor: ${""} `} content={props.filmsByActor} showAllways={false} />
           <Catalog title={`Genre: ${""} `} content={props.filmsByGenre} showAllways={false} />
           <Catalog title={"All Films"} content={props.films} showAllways={true}/>
