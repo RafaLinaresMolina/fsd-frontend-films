@@ -16,7 +16,7 @@ function FilmList(props) {
     <div className="theList">
       <div className="wrapperContent">
         <div className="movieListContainer">
-          {props.content?.rows.map((movie) => (
+          {props.content?.rows?.map((movie) => (
             <div className="frames" onClick={() => setSelectedFilm(movie)}>
               <Frame
                 anim
