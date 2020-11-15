@@ -1,11 +1,10 @@
-.clientZone{
-  display: flex;
-  height: 100%;
-}
-.headerWrapper{
-  display: flex;
-  flex-direction: row;
-  height: 4.8em;
+
+.header{
+  position: fixed;
+  display: inline;
+  left: 0;
+  top: 0;
+  z-index: 5;
   width: 100%;
 }
 

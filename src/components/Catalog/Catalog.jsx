@@ -5,12 +5,12 @@ import "./Catalog.scss";
 
 function Catalog(props) {
   return (
-      <div className="catalogContent">
-        <Content>
-          <h2 className="catalogTitle">{props.title}</h2>
-          <FilmList/>
-        </Content>
-      </div>
+    <div style={props.showAllways ? {display: 'block'} : {display: 'none'}} className={`catalogContent`}>
+      <Content>
+        <h2 className="catalogTitle">{props.title}</h2>
+        <FilmList content={props.content}/>
+      </Content>
+    </div>
   );
 }
 
