@@ -1,5 +1,4 @@
 const initialState = {
-
   films: {
     count: 0,
     stored: 0,
@@ -56,7 +55,11 @@ const reducer = (state = initialState, action) => {
       filmsByActor: action.payload,
     },
     CLEAR_ALL_FILMS: {
-      initialState
+      ...state,
+      films: initialState.films,
+      filmsByTitle: initialState.filmsByTitle,
+      filmsByActor: initialState.filmsByActor,
+      filmsByGenre: initialState.filmsByGenre,
     },
   };
   return Object.keys(actions).includes(action.type)

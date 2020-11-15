@@ -17,7 +17,9 @@ const profile = (state = initialState, action) => {
       orders: action.payload,
     },
     CLEAR_ALL_PROFILE_INFO: {
-      initialState
+      ...state,
+      profile: initialState.profile,
+      orders: initialState.orders,
     }
   };
   return Object.keys(actions).includes(action.type)

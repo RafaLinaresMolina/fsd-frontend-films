@@ -8,7 +8,8 @@ const user = (state = initialState, action) => {
       user: action.payload,
     },
     LOGOUT: {
-      initialState
+      ...state,
+      user: initialState.user
     },
     READ_USER: {
       ...state,

@@ -24,7 +24,10 @@ const user = (state = initialState, action) => {
       allOrders: action.payload,
     },
     CLEAR_ALL_ADMIN_INFO: {
-      initialState
+      ...state,
+      allOrders: initialState.allOrders,
+      orderCount: initialState.orderCount,
+      totalOrders: initialState.totalOrders,
     }
   };
   return Object.keys(actions).includes(action.type)

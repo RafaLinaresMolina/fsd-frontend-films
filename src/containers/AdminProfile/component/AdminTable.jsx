@@ -20,7 +20,7 @@ import { redTheme } from "../../../themes/themes";
 import './AdminTable.scss'
 const AdminTable = (props) => {
   useEffect(() => {
-    if(!props.allOrders.length)
+    if(!props.allOrders?.length)
     getAllOrders(props.user.token).catch(err => console.log(err))
   }, [])
 

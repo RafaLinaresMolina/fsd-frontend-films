@@ -29,7 +29,7 @@ function App(props) {
           <Notification />
           <BrowserRouter>
             <Switch>
-              {!props.user ? (
+              {!props.user?.token ? (
                 <Route exact path="/">
                   <Home />
                 </Route>
@@ -38,7 +38,7 @@ function App(props) {
                     <DetectRol />
                   </Route>
                 )}
-              {props.user ? (
+              {props.user?.token ? (
                 <Redirect to="/dashboard" />
               ) : (
                   <Redirect to="/" />
