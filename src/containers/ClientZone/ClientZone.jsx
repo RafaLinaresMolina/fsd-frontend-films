@@ -1,20 +1,18 @@
 import { connect } from "react-redux";
 import Profile from "../../containers/Profile/Profile";
 import Catalog from "../../components/Catalog/Catalog";
-import { Content, Header, Link } from "arwes";
+import { Content } from "arwes";
 import Footer from "../../components/Footer/Footer";
 import "./ClientZone.scss";
+import HeaderComponent from "../../components/Header/HeaderComponent";
 function ClientZone(props) {
   return (
     <div className="clientZone">
       <Content>
-        <div className="header">
-          <Header animate>
-            <div className="headerLogo">
-              <h1>GEEKFLIX - WELLCOME {props.user?.name}</h1>
-            </div>
-          </Header>
+        <div className="headerWrapper">
+          <HeaderComponent />
         </div>
+
         <div className="contentClient">
           <Catalog title={"Ultimos estrenos"} />
           <Catalog title={"Ciencia ficción"} />
