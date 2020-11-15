@@ -3,13 +3,7 @@ import Catalog from "../../components/Catalog/Catalog";
 import { Content, Header } from "arwes";
 import Footer from "../../components/Footer/Footer";
 import "./ClientZone.scss";
-<<<<<<< HEAD
 import HeaderComponent from "../../components/Header/HeaderComponent";
-=======
-import { useEffect } from "react";
-import { getAllFilms } from "../../redux/actions/film";
-import { ERROR_NOTIFICATION } from "../../redux/types/notificationTypes";
->>>>>>> 6f59cccf0e774da5371ef3228edb0170f4406445
 function ClientZone(props) {
 
   useEffect(() => {
