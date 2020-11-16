@@ -18,6 +18,10 @@ function AdminZone(props) {
             </div>
           </Header>
         </div>
+
+
+
+
         <div className="contentAdmin">
           <div className="profileAdmin">
             <ProfileDetail user={props.user} />
@@ -28,7 +32,6 @@ function AdminZone(props) {
                   <ExitRunIcon className="verticalAlignIcons"/> Logout
                 </Button>
               </Frame>
-              
             </div>
            
           </div>
@@ -36,6 +39,9 @@ function AdminZone(props) {
             <AdminTable />
           </div>
         </div>
+
+
+
 
         <Footer />
       </div>

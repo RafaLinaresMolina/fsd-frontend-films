@@ -10,7 +10,6 @@ export const getAllFilms = async() => {
 }
 export const getFilmsByName = async(name) => {
     const offset = !store.getState().filmReducer.films.stored ? 0 : store.getState().filmReducer.films.stored;
-   // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/films/title/${name}/?offset=${offset}`)
     const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/films/title/${name}/`)
     res.data.stored = res.data.rows.length;
     const films = {
@@ -20,10 +19,9 @@ export const getFilmsByName = async(name) => {
       }; console.log(films)
     !offset ? store.dispatch({ type: SET_FILMS_BY_TITLE, payload: films }) : store.dispatch({ type: UPDATE_FILMS_BY_TITLE, payload: films });
 }
-/* 
+ 
 export const getFilmsByGenre = async(genre) => {
     const offset = !store.getState().filmReducer.films.stored ? 0 : store.getState().filmReducer.films.stored;
-   // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/films/genre/name/${name}/?offset=${offset}`)
     const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/films/genre/name/${genre}/`)
     res.data.stored = res.data.rows.length;
     const films = {
@@ -36,7 +34,6 @@ export const getFilmsByGenre = async(genre) => {
 
 export const getFilmsByActor = async(actor) => {
     const offset = !store.getState().filmReducer.films.stored ? 0 : store.getState().filmReducer.films.stored;
-   // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/films/actor/name/${name}/?offset=${offset}`)
     const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/films/actor/name/${actor}/`)
     res.data.stored = res.data.rows.length;
     const films = {
@@ -46,4 +43,4 @@ export const getFilmsByActor = async(actor) => {
       }; console.log(films)
     !offset ? store.dispatch({ type: SET_FILMS_BY_ACTOR, payload: films }) : store.dispatch({ type: UPDATE_FILMS_BY_ACTOR, payload: films });
 }
- */
+ 

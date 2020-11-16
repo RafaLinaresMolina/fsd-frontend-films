@@ -28,4 +28,24 @@ export const updateOrderStatus = async (order, token) => {
   });
 };
 
-
+export const createOrder = async (order, token) => {
+  await axios.post(
+    `${process.env.REACT_APP_BASE_URL}/orders/`,
+    order,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  store.dispatch({
+    type: SUCCESS_NOTIFICATION,
+    payload: {
+      notification: {
+        title: "SUCCESS!",
+        msg: "Order Created! For more info check profile.",
+      },
+      show: true,
+    },
+  });
+};

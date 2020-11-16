@@ -5,7 +5,7 @@ import "./Catalog.scss";
 
 function Catalog(props) {
   return (
-    <div style={props.showAllways ? {display: 'block'} : {display: 'none'}} className={`catalogContent`}>
+    <div style={props.content?.rows.length ? {display: 'block'} : {display: 'none'}} className={`catalogContent`}>
       <Content>
         <h2 className="catalogTitle">{props.title}</h2>
         <FilmList content={props.content}/>

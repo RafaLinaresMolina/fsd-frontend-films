@@ -177,6 +177,10 @@ const AdminTable = (props) => {
   const showModalUpdateOrder = () => {setShowUpdateOrder(true)};
   const hideModalUpdateOrder = () => {setShowUpdateOrder(false)};
 
+  const getChunk =() => {
+    return props.totalOrders - props.orderCount > 10 ? 10 : props.totalOrders - props.orderCount
+  }
+
   return (
     <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
       <Table animate>
@@ -220,13 +224,13 @@ const AdminTable = (props) => {
         <GenericReactTable data={props.allOrders} columns={oerderHeaders} setColors={setColors}/>
         <div className="paginationControls">
           <div className="leftyButton">
-          <Button onClick={async () => (+props.orderCount > 10 ? await getAllOrders(props.user.token, false, 0) : "")}> <ArrowLeftIcon className="verticalAlignIcons"/> </Button> 
+          <Button onClick={async () => (+props.orderCount > 0 ? await getAllOrders(props.user.token, false, props.orderCount) : "")}> <ArrowLeftIcon className="verticalAlignIcons"/> </Button> 
         </div>
         <div className="paginationInfo">
-          Page {+props.orderCount / 10} from {+props.totalOrders / 10}, showing {+props.orderCount} elements of {+props.totalOrders} 
+          Page {Math.ceil(+props.orderCount / 10)} from {Math.ceil(+props.totalOrders / 10)}, showing {+props.orderCount} elements of {+props.totalOrders} 
         </div>
         <div className="rightyButton">
-        <Button onClick={async () => (+props.orderCount < +props.totalOrders ? await getAllOrders(props.user.token, true, +props.orderCount) : "")}> <ArrowRightIcon className="verticalAlignIcons"/> </Button>
+        <Button onClick={async () => (+props.orderCount < +props.totalOrders ? await getAllOrders(props.user.token, true, props.orderCount) : "")}> <ArrowRightIcon className="verticalAlignIcons"/> </Button>
         </div>
         </div>
         

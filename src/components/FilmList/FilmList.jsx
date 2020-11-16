@@ -120,20 +120,35 @@ function FilmList(props) {
                     selectedFilm.stock ? (
                       <Button onClick={() => {
                         try{
-                          props.dispatch({
-                            type: SET_ITEM,
-                            payload: selectedFilm,
-                          });
-                          props.dispatch({
-                            type: INFO_NOTIFICATION,
-                            payload: {
-                              notification: {
-                                title: "Film added to cart",
-                                msg: `Film ${selectedFilm.original_title} added to cart.`,
+                          console.log(props.items.includes(selectedFilm))
+                          if(!props.items.includes(selectedFilm)){
+                            props.dispatch({
+                              type: SET_ITEM,
+                              payload: selectedFilm,
+                            });
+                            props.dispatch({
+                              type: INFO_NOTIFICATION,
+                              payload: {
+                                notification: {
+                                  title: "Film added to cart",
+                                  msg: `Film ${selectedFilm.original_title} added to cart.`,
+                                },
+                                show: true,
                               },
-                              show: true,
-                            },
-                          });
+                            });
+                          }else{
+                            props.dispatch({
+                              type: INFO_NOTIFICATION,
+                              payload: {
+                                notification: {
+                                  title: "Info",
+                                  msg: 'Film already in cart',
+                                },
+                                show: true,
+                              },
+                            });
+                          }
+                          setSelectedFilm({});
                         }catch(err){
                           props.dispatch({
                             type: WARNING_NOTIFICATION,

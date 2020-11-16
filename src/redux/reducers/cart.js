@@ -1,3 +1,4 @@
+
 const initialState = {
     items: [],
 }
@@ -14,7 +15,7 @@ const reducer = (state = initialState, action) => {
     },
     CLEAR_CART: {
       ...state,
-      items: initialState.items,
+      items: [],
     },
   };
   return Object.keys(actions).includes(action.type)

@@ -5,7 +5,6 @@ import "./GenericReactTable.scss";
 function GenericReactTable(props) {
   const data = props.data ? props.data : [];
   const columns = props.columns;
-
   const {
     getTableProps,
     getTableBodyProps,
