@@ -9,8 +9,8 @@ import {ERROR_NOTIFICATION, SUCCESS_NOTIFICATION} from '../types/notificationTyp
 
 export const loginAction = async(credentials) => {
     const res = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/login', credentials)
-    localStorage.setItem('user', JSON.stringify(res.data.user));
-    store.dispatch({ type: LOGIN, payload: res.data.user });
+    localStorage.setItem('user', JSON.stringify(res.data));
+    store.dispatch({ type: LOGIN, payload: res.data });
     store.dispatch({
         type: SUCCESS_NOTIFICATION,
         payload: {
