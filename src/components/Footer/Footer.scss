@@ -1,0 +1,38 @@
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.7em;
+  z-index: 5;
+  display: inline;
+  text-align: center;
+
+.footerContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: rgba(122, 224, 255, 0.3);
+
+  .footerLogo{
+    display: flex;
+    width: 50%;
+    padding-left: 2em;
+    padding-top: 1em;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+
+  .footerContent{
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    margin-right: 2em;
+    .masterpiece{
+      font-family: "Electrolize", sans-serif;
+    }
+  }
+}
+}

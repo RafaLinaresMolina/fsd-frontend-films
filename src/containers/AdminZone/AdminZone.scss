@@ -1,0 +1,61 @@
+.adminZone{
+  height: auto;
+  
+  .header{
+  position: fixed;
+  display: inline;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  background:rgba(122, 224, 255, 0.3);
+
+  .headerLogo{
+    display: flex;
+    padding-left: 2em;
+    padding-top: 1em;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+}
+
+.actions{
+  display: flex;
+  flex-direction: column;
+  margin:1em;
+  font-family: "Electrolize", sans-serif;
+}
+
+.contentAdmin{
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin-top: 4.2em;
+  padding-bottom: 1em;
+  margin-bottom: 3em;
+  .profileAdmin{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 100%;
+  }
+
+  .allOrdersContent{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    width: max-content;
+    height: 100%;
+  }
+}
+}
+
+.pastDueTr{
+  background:rgba(255, 10, 10, 0.41);
+}
+
+
+

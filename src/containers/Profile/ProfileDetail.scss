@@ -1,0 +1,21 @@
+.ProfileContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 1em;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .ProfileData{
+        display: flex;
+        flex-direction: column;
+        div{
+            font-family: "Electrolize";
+            font-weight: bolder;
+        }
+        span{
+            font-family: "Nova Square";
+            font-weight: lighter;
+        }
+    }
+}
+

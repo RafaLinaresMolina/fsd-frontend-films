@@ -1,0 +1,57 @@
+.header {
+  width: 100%;
+  font-size: 0.9em;
+  display: flex;
+  text-align: center;
+}
+
+
+.shoppingCart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+
+.container {
+  height: 3em;
+  width: 100%;
+  justify-content: start;
+  display: flex;
+  flex-direction: row;
+}
+
+.logoContainer {
+  width: 10em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.logo {
+  display: flex;
+  text-align: start;
+  margin-top:1em;
+}
+
+.buttonContainer {
+  width: 100%;
+  margin-top:1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.buttonElement {
+  margin: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}

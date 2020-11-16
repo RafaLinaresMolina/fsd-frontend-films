@@ -1,0 +1,33 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 200;
+  font-family: "Electrolize", sans-serif;
+  text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+  thead {
+    tr {
+      th {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-weight: bold;
+        white-space: nowrap;
+        font-family: "Electrolize", sans-serif;
+        text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+      }
+    }
+    user-select: none;
+    font-size: 1.2em;
+
+  }
+
+  tbody {
+    text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+    td {
+      vertical-align: middle !important;
+      text-align: center;
+      padding: 1em !important;
+    }
+  }
+}
