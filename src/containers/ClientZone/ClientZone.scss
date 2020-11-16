@@ -1,15 +1,14 @@
-
-.header{
-  position: fixed;
-  display: inline;
-  left: 0;
+.headerWrapper{
+  display: flex;
+  position: sticky;
   top: 0;
-  z-index: 5;
   width: 100%;
+  z-index: 5;
+  background: rgba(122, 224, 255, 0.75);
 }
-
 .contentClient{
   overflow-x: hidden;
+  margin-top:6em;
   display: flex;
   flex-direction: column;
   height: 100%;

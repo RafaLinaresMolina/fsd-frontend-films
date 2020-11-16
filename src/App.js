@@ -1,15 +1,14 @@
 import "./App.css";
 import React, { useEffect } from "react";
-import {Arwes, createTheme, ThemeProvider } from "arwes";
+import { Arwes, createTheme, ThemeProvider } from "arwes";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import AdminTable from './containers/AdminProfile/component/AdminTable';
-import Home from './containers/Home/Home';
+import AdminTable from "./containers/AdminProfile/component/AdminTable";
+import Home from "./containers/Home/Home";
 import Notification from "./components/Notification/Notification";
-import 'antd/dist/antd.css'; 
+import "antd/dist/antd.css";
 import { LOGIN } from "./redux/types/userTypes";
 import { connect } from "react-redux";
 import DetectRol from "./components/DetectRol/DetectRol";
-import SearchFilm from "./components/Search/SearchFilm";
 
 function App(props) {
   useEffect(() => {
@@ -35,27 +34,25 @@ function App(props) {
                   <Home />
                 </Route>
               ) : (
-                  <Route exact path="/dashboard">
-                    <SearchFilm></SearchFilm>
-                    <DetectRol />
-                  </Route>
-                )}
+                <Route exact path="/dashboard">
+                  <DetectRol />
+                </Route>
+              )}
               {props.user?.token ? (
                 <Redirect to="/dashboard" />
               ) : (
-                  <Redirect to="/" />
-                )}
+                <Redirect to="/" />
+              )}
               <AdminTable />
             </Switch>
           </BrowserRouter>
         </Arwes>
       </ThemeProvider>
-        </div>
-    
+    </div>
   );
 }
-  const mapStateToProps = (state) => {
-    return { user: state.userReducer.user};
-  };
-  
-  export default connect(mapStateToProps)(App);
+const mapStateToProps = (state) => {
+  return { user: state.userReducer.user };
+};
+
+export default connect(mapStateToProps)(App);

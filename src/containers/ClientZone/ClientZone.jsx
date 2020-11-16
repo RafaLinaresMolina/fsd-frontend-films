@@ -7,7 +7,7 @@ import HeaderComponent from "../../components/Header/HeaderComponent";
 import { useEffect } from "react";
 import {getAllFilms} from "../../redux/actions/film";
 import {ERROR_NOTIFICATION} from "../../redux/types/notificationTypes";
-
+import SearchFilm from '../../components/Search/SearchFilm'
 function ClientZone(props) {
 
   useEffect(() => {
@@ -27,10 +27,13 @@ function ClientZone(props) {
     <div className="clientZone">
       <Content>
         <div className="headerWrapper">
-          <HeaderComponent />
+          <Header style={{width: '100%'}}>
+            <HeaderComponent />
+          </Header>
         </div>
         
         <div className="contentClient">
+        <SearchFilm />
           <Catalog title={"Search result "} content={props.filmsByTitle} showAllways={true} />
 {/*           <Catalog title={`Actor: ${""} `} content={props.filmsByActor} showAllways={true} />
           <Catalog title={`Genre: ${""} `} content={props.filmsByGenre} showAllways={true} /> */}
