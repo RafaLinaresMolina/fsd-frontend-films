@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import "./FilmList.scss";
 import FlatList from "flatlist-react";
 import FilmDetail from "../FilmDetail/FilmDetail";
-import { getAllFilms } from "../../redux/actions/film";
-import { ERROR_NOTIFICATION, INFO_NOTIFICATION, SUCCESS_NOTIFICATION, WARNING_NOTIFICATION } from "../../redux/types/notificationTypes";
+import { INFO_NOTIFICATION, WARNING_NOTIFICATION } from "../../redux/types/notificationTypes";
 import CloseIcon from "mdi-react/CloseIcon";
 import CartArrowDownIcon from 'mdi-react/CartArrowDownIcon'
 import { SET_ITEM } from "../../redux/types/cartTypes";
@@ -18,24 +17,6 @@ function FilmList(props) {
     );
   };
 
-  const fetchFilms = async () => {
-    // this is simple example but most of good paginated apis will give you total items count and offset information
-    try {
-      await getAllFilms();
-    } catch (err) {
-      props.dispatch({
-        type: ERROR_NOTIFICATION,
-        payload: {
-          notification: {
-            title: "ERROR RETRIVING FILMS!",
-            msg: err.message,
-          },
-          show: true,
-        },
-      });
-    }
-  };
-
   return (
       <div className="theList">
         <div className="wrapperContent">
@@ -44,10 +25,10 @@ function FilmList(props) {
               list={props.content?.rows}
               renderItem={renderFilmDetail}
               renderWhenEmpty={() => (
-               []
+               "Loading..."
               )}
-              hasMoreItems={props.films.count}
-              loadMoreItems={async () => await fetchFilms}
+              hasMoreItems={props.content?.stored < props.content?.count}
+              loadMoreItems={props.fetchMoreItems}
             />
           </div>
         </div>
@@ -181,7 +162,6 @@ function FilmList(props) {
 
 const mapStateToProps = (state) => {
   return { user: state.userReducer.user, 
-    films: state.filmReducer.films,
     items: state.cartReducer.items
    };
 };
