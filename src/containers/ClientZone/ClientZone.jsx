@@ -47,23 +47,23 @@ function ClientZone(props) {
           <Catalog title={`All Films`} content={props.films} fetchMoreItems={getAllFilms} showAllways={true}/>
         </div>
         <div style={togle ? {display: 'none'} : {display: 'block'}} className={`profileZone`}>
-        <div className="contentAdmin" style={{padding: '1em', marginBottom: '2.5em'}}>
-          <div className="profileAdmin">
-            <ProfileDetail user={props.user} />
-            <div className="actions">
-              <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
-                <h2>Actions</h2>
-                <Button onClick={async() => await logOut(props.user.token)}>
-                  <ExitRunIcon className="verticalAlignIcons"/> Logout
-                </Button>
-              </Frame>
+          <div className="contentUser" style={{padding: '1em', marginBottom: '2.5em'}}>
+            <div className="profileUser">
+              <ProfileDetail user={props.user} />
+              <div className="actions">
+                <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
+                  <h2>Actions</h2>
+                  <Button onClick={async() => await logOut(props.user.token)}>
+                    <ExitRunIcon className="verticalAlignIcons"/> Logout
+                  </Button>
+                </Frame>
+              </div>
+            
             </div>
-           
+            <div className="allOrdersContent">
+              <UserTable />
+            </div>
           </div>
-          <div className="allOrdersContent">
-            <UserTable />
-          </div>
-        </div>
         </div>
 
         <Footer />

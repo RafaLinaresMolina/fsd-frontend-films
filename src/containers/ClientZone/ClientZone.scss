@@ -1,6 +1,6 @@
 .headerWrapper{
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 5;
@@ -8,11 +8,27 @@
 }
 .contentClient{
   overflow-x: hidden;
-  margin-top:6em;
+  margin-top:4em;
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin-top: 1em;
+  margin-bottom: 3em;
+  font-family: "Electrolize", sans-serif;
+  text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
+}
+
+.profileUser{
+  display: flex;
+  flex-direction: column;
+}
+
+.contentUser{
+  overflow: hidden;
+  margin-top:3em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   margin-bottom: 3em;
   font-family: "Electrolize", sans-serif;
   text-shadow: 0 0 4px rgba(161, 236, 251, 0.65);
