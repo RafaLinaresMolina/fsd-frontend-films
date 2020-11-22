@@ -5,7 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import "./ClientZone.scss";
 import HeaderComponent from "../../components/Header/HeaderComponent";
 import { useEffect, useState } from "react";
-import {getAllFilms} from "../../redux/actions/film";
+import {getAllFilms, getFilmsByActor, getFilmsByGenre, getFilmsByName} from "../../redux/actions/film";
 import {ERROR_NOTIFICATION} from "../../redux/types/notificationTypes";
 import SearchFilm from '../../components/Search/SearchFilm'
 import {logOut} from '../../redux/actions/auth'
@@ -41,10 +41,10 @@ function ClientZone(props) {
         
         <div style={togle ? {display: 'block'} : {display: 'none'}} className={`contentClient`}>
           <SearchFilm />
-          <Catalog title={"Search by Title "} content={props.filmsByTitle} showAllways={false} />
-          <Catalog title={`Search by Actor `} content={props.filmsByActor} showAllways={false} />
-          <Catalog title={`Search by Genre `} content={props.filmsByGenre} showAllways={false} /> 
-          <Catalog title={"All Films"} content={props.films} showAllways={true}/>
+          <Catalog title={`Search by Title `} content={props.filmsByTitle} fetchMoreItems={getFilmsByName} showAllways={false} />
+          <Catalog title={`Search by Actor `} content={props.filmsByActor} fetchMoreItems={getFilmsByActor} showAllways={false} />
+          <Catalog title={`Search by Genre `} content={props.filmsByGenre} fetchMoreItems={getFilmsByGenre} showAllways={false} /> 
+          <Catalog title={`All Films`} content={props.films} fetchMoreItems={getAllFilms} showAllways={true}/>
         </div>
         <div style={togle ? {display: 'none'} : {display: 'block'}} className={`profileZone`}>
         <div className="contentAdmin" style={{padding: '1em', marginBottom: '2.5em'}}>

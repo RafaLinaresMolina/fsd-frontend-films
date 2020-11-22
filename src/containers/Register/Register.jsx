@@ -102,17 +102,10 @@ function Register(props) {
 
     <div className="button-log-reg">
       <Button animate layer="success" onClick={async () => {
-        try {
-          const ok = await validateAndSend(register, props);
-          if (ok) {
-            setTimeout(() => {
-              props.handleClose();
-            }, 1000);
-          }
-        } catch (err) {
-          console.log(err.message)
-        }
-        
+        await validateAndSend(register, props);
+          setTimeout(() => {
+            props.handleClose();
+          }, 1000);
       }}><AccountPlusIcon className="verticalAlignIcons" /> Register </Button>
       </div>
     </div>
