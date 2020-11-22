@@ -61,6 +61,22 @@ const reducer = (state = initialState, action) => {
       filmsByActor: initialState.filmsByActor,
       filmsByGenre: initialState.filmsByGenre,
     },
+    CLEAR_FILMS: {
+      ...state,
+      films: initialState.films,
+    },
+    CLEAR_FILMS_BY_TITLE: {
+      ...state,
+      filmsByTitle: initialState.filmsByTitle,
+    },
+    CLEAR_FILMS_BY_GENRE: {
+      ...state,
+      filmsByGenre: initialState.filmsByGenre,
+    },
+    CLEAR_FILMS_BY_ACTOR: {
+      ...state,
+      filmsByActor: initialState.filmsByActor,
+    },
   };
   return Object.keys(actions).includes(action.type)
     ? actions[action.type]
