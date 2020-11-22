@@ -1,6 +1,6 @@
-import { Button, Frame, Table, Words } from "arwes";
+import { Button, Frame, Table } from "arwes";
 import { connect } from "react-redux";
-import {getAllOrders} from '../../../redux/actions/admin'
+import {getAllOrders} from '../../../redux/actions/order'
 import GenericReactTable from "../../../components/GenericTable/GenericReactTable.jsx";
 import { useEffect, useState } from "react";
 import Modal from "../../../components/Modal/Modal";

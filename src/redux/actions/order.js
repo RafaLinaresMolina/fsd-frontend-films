@@ -1,9 +1,9 @@
 import axios from "axios";
 import store from "../store";
+import { SET_ALL_ORDERS } from "../types/adminTypes";
 import {
   SUCCESS_NOTIFICATION,
 } from "../types/notificationTypes";
-import { getAllOrders } from "./admin";
 
 export const updateOrderStatus = async (order, token) => {
   await axios.put(
@@ -49,3 +49,19 @@ export const createOrder = async (order, token) => {
     },
   });
 };
+
+export const getAllOrders = async(token, forward = true, offset = 0) => {
+  const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/orders/?offset=${offset}`, {
+      headers: {
+          Authorization: "Bearer " + token
+      }
+  })
+  const payload = {
+    allOrders: res.data.rows,
+    orderCount: forward ? store.getState().adminReducer.orderCount + res.data.rows.length : store.getState().adminReducer.orderCount - res.data.rows.length,
+    totalOrders: res.data.count,
+  }
+  console.log(payload)
+  store.dispatch({ type: SET_ALL_ORDERS, payload });
+
+}
