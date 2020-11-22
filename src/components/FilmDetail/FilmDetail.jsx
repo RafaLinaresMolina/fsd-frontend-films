@@ -1,6 +1,6 @@
 import { Frame, Image } from "arwes";
 import React from "react";
-
+import "./FilmDetail.scss";
 const FilmDetail = ({movie, setSelectedFilm}) => {
 
   const selectLayer = (movie) => {
@@ -14,16 +14,15 @@ const FilmDetail = ({movie, setSelectedFilm}) => {
       <Frame
         anim
         corners={4}
-        style={{ padding: "1em" }}
+        className="marvelousPadding"
         layer={selectLayer(movie).layer}
       >
         <div className="glassPannel"></div>
         <Image
           animate
+          className="filmPortraitPoster"
           style={{
-            maxWidth: "13em",
             filter: selectLayer(movie).filter,
-            margin: "0",
           }}
           layer={selectLayer(movie).layer}
           resources={movie.img_portrait}

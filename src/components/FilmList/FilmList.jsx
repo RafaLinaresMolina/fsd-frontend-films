@@ -60,7 +60,7 @@ function FilmList(props) {
             style={{ backgroundImage: `url(${selectedFilm.img_landscape}` }}
           >
             <Frame anim corners={4}>
-              <Content style={{ padding: "1em" }}>
+              <Content className="marvelousPadding">
                 <Button onClick={() => setSelectedFilm({})}>
                   <CloseIcon className="verticalAlignIcons" />
                 </Button>
@@ -78,7 +78,7 @@ function FilmList(props) {
                 </div>
 
                 <div className="synopsisQuote">
-                  <Frame anim corners={4} style={{ padding: "1em" }}>
+                  <Frame anim corners={4} className="marvelousPadding">
                     <h3>Synopsis:</h3>
                     <Blockquote>{selectedFilm.synopsis}</Blockquote>
                   </Frame>

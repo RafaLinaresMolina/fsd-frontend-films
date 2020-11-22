@@ -182,7 +182,7 @@ const AdminTable = (props) => {
   }
 
   return (
-    <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
+    <Frame anim corners={4} className="marvelousPadding" layer="primary">
       <Table animate>
         <Modal show={showDetailUser} handleClose={hideModalDetailUser} header={3} title={"User Details"} icon={<UserIcon className='verticalAlignIcons'/>}>
           <ProfileDetail user={row.User}/>

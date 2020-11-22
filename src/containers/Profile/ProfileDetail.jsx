@@ -15,7 +15,7 @@ function ProfileDetail(props) {
   return (
     <div className="ProfileContainer">
       <div className="ProfileData">
-        <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
+        <Frame anim corners={4} className="marvelousPadding" layer="primary">
           <div>
             {" "}
             NAME: <span>{props.user?.name}</span>

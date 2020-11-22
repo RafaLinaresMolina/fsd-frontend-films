@@ -124,7 +124,7 @@ const AdminTable = (props) => {
   };
 
   return (
-    <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
+    <Frame anim corners={4} className="marvelousPadding" layer="primary">
       <Table animate>
         <Modal
           show={showDetailOrder}

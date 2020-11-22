@@ -21,7 +21,7 @@ function AdminZone(props) {
           <div className="profileAdmin">
             <ProfileDetail user={props.user} />
             <div className="actions">
-              <Frame anim corners={4} style={{ padding: "1em" }} layer="primary">
+              <Frame anim corners={4} className="marvelousPadding" layer="primary">
                 <h2>Actions</h2>
                 <Button onClick={async() => await logOut(props.user.token)}>
                   <ExitRunIcon className="verticalAlignIcons"/> Logout
