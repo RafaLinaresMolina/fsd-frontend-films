@@ -1,6 +1,5 @@
 import { Frame } from "arwes";
-import React, { useEffect } from "react";
-import { getOrders } from "../../redux/actions/profile";
+import React from "react";
 import "./ProfileDetail.scss";
 
 function ProfileDetail(props) {

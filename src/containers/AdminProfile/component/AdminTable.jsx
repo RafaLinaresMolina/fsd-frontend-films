@@ -177,10 +177,6 @@ const AdminTable = (props) => {
   const showModalUpdateOrder = () => {setShowUpdateOrder(true)};
   const hideModalUpdateOrder = () => {setShowUpdateOrder(false)};
 
-  const getChunk =() => {
-    return props.totalOrders - props.orderCount > 10 ? 10 : props.totalOrders - props.orderCount
-  }
-
   return (
     <Frame anim corners={4} className="marvelousPadding" layer="primary">
       <Table animate>

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button } from "arwes";
 import {
   getFilmsByName,
-  getFilmsByActor,
-  getFilmsByGenre,
 } from "../../redux/actions/film";
 import "./SearchFilm.scss";
 import MagnifyIcon from "mdi-react/MagnifyIcon";
