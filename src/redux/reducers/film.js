@@ -5,16 +5,19 @@ const initialState = {
     rows: [],
   },
   filmsByTitle: {
+    prefix: '',
     count: 0,
     stored: 0,
     rows: [],
   },
   filmsByGenre: {
+    prefix: '',
     count: 0,
     stored: 0,
     rows: [],
   },
   filmsByActor: {
+    prefix: '',
     count: 0,
     stored: 0,
     rows: [],
