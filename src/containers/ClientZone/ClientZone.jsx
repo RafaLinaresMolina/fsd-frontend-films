@@ -47,7 +47,7 @@ function ClientZone(props) {
           <Catalog title={`All Films`} content={props.films} fetchMoreItems={getAllFilms} showAllways={true}/>
         </div>
         <div style={togle ? {display: 'none'} : {display: 'block'}} className={`profileZone`}>
-          <div className="contentUser" style={{padding: '1em', marginBottom: '2.5em'}}>
+          <div className="contentUser">
             <div className="profileUser">
               <ProfileDetail user={props.user} />
               <div className="actions">
