@@ -14,14 +14,9 @@ function AdminZone(props) {
           <Header animate>
             <div className="headerLogo">
                 <h1>GEEKFLIX - ADMINISTRATION PANEL</h1>
-              
             </div>
           </Header>
         </div>
-
-
-
-
         <div className="contentAdmin">
           <div className="profileAdmin">
             <ProfileDetail user={props.user} />
@@ -33,16 +28,11 @@ function AdminZone(props) {
                 </Button>
               </Frame>
             </div>
-           
           </div>
           <div className="allOrdersContent">
             <AdminTable />
           </div>
         </div>
-
-
-
-
         <Footer />
       </div>
     </Content>

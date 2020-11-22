@@ -11,10 +11,6 @@ import UserAccount from 'mdi-react/CardAccountDetailsIcon';
 
 
 const Home = () => {
-  function onChange(a) {
-    console.log(a);
-  }
-
   
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -28,7 +24,7 @@ const Home = () => {
 return(
   <div>
     <div className="imgCarrusel">
-      <Carousel dots={false} autoplay={onChange}>
+      <Carousel dots={false}>
         <div class="imagen1">
         </div>
         <div class="imagen2">
@@ -55,7 +51,7 @@ return(
       <div>
         <Button animate onClick={() => {showModalRegister()}}>Register </Button>
         <Modal show={showRegister} handleClose={hideModalRegister} title={'Register'} icon={<UserAccount className='verticalAlignIcons'/>}>
-          <Register />
+          <Register handleClose={hideModalRegister} />
         </Modal>
       </div>
     </div>

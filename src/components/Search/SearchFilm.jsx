@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { Button } from 'arwes';
-import { getFilmsByName, getFilmsByActor, getFilmsByGenre } from '../../redux/actions/film';
+import { getFilmsByName } from '../../redux/actions/film';
 import './SearchFilm.scss';
 import MagnifyIcon from 'mdi-react/MagnifyIcon';
 
 
 const Search = (props) => {
 
-  useEffect(() => {
-    try {
-
-
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
   const [search, setSearch] = useState("");
-
 
   const eventHandler = (ev) => {
     setSearch(ev.target.value)
@@ -45,7 +36,7 @@ const Search = (props) => {
         <div className="control">
           <Button className="button is-info" >
             <MagnifyIcon className='verticalAlignIcons' />Search
-                        </Button>
+          </Button>
         </div>
       </div>
     </form>

@@ -12,7 +12,6 @@ const validationErrorMessages={
     
 const validateAndSend = async (props, credentials) =>{
   
-    console.log('aaaaaa')
     if (credentials.password === "" || credentials.email === ""){
       props.dispatch({
         type: WARNING_NOTIFICATION,

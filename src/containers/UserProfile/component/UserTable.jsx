@@ -105,7 +105,7 @@ const AdminTable = (props) => {
                   showModalDetailOrder()
                   setRow(row)}
                 }>
-                  < MagnifyIcon className="verticalAlignIcons"/> </Button>
+                  <MagnifyIcon className="verticalAlignIcons"/> </Button>
               </>
             );
           },

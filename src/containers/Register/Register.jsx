@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Register.scss';
+import {connect} from 'react-redux';
 import { Button } from "arwes";
 import { registerAction } from '../../redux/actions/auth';
 import { ERROR_NOTIFICATION, SUCCESS_NOTIFICATION, WARNING_NOTIFICATION } from '../../redux/types/notificationTypes';
@@ -12,30 +13,27 @@ const validationErrorMessages = {
 }
 
 const doRegister = async (register, props) => {
-  try {
-    const resRegister = await registerAction(register);
-    console.log(resRegister.data);
-    props.dispatch({
-      type: SUCCESS_NOTIFICATION,
+  const resRegister = await registerAction(register);
+  console.log(resRegister.data);
+  props.dispatch({
+    type: SUCCESS_NOTIFICATION,
       payload: {
         notification: {
           title: "Correct Registration.",
           msg: `Thank you for making an account with us, ${register.name}.`,
         },
-        show: true,
+      show: true,
       },
     });
-  } catch (err) {
-    throw err;
-  }
 }
+
 const validateAndSend = async (register, props) => {
   try {
     let notificationMessage = [];
 
     let allOk = true;
     const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-    if (register.name === "" || register.lastName === "" || register.password === "" || register.email === "") {
+    if(Object.values(register).some(v=>v==='')) {
       notificationMessage.push(validationErrorMessages.errorEmptyRequired);
       allOk = false;
     }
@@ -50,7 +48,7 @@ const validateAndSend = async (register, props) => {
     console.log(notificationMessage)
     if (allOk) {
       return await doRegister(register, props);
-    } else {
+    }
       props.dispatch({
         type: WARNING_NOTIFICATION,
         payload: {
@@ -61,15 +59,14 @@ const validateAndSend = async (register, props) => {
           show: true
         },
       });
-    }
   } catch (err) {
-    console.log(err.message)
+    console.log(err)
     props.dispatch({
       type: ERROR_NOTIFICATION,
       payload: {
         notification: {
           title: "Error.",
-          msg: err.response.data.trace,
+          msg: err.response.data.trace.parent.sqlMessage,
         },
         show: true,
       },
@@ -122,4 +119,4 @@ function Register(props) {
   )
 }
 
-export default Register;
+export default connect()(Register);
