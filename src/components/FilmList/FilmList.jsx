@@ -14,19 +14,15 @@ function FilmList(props) {
 
   const containerRef = useRef(null);
   const [scrollLeftMaxReached, setScrollLeftMaxReached] = useState(false)
-  const [scrollLeftMaxValue, setScrollLeftMaxValue] = useState(0)
   const [selectedFilm, setSelectedFilm] = useState({});
 
   useEffect(() => {
    if(containerRef.current){
-    setScrollLeftMaxValue(containerRef.current.scrollLeftMax);
     setScrollLeftMaxReached(false);
-    console.log(scrollLeftMaxReached, scrollLeftMaxValue)
    }
   }, [props.content])
   
   const scrollHandler = () => {
-    console.log(scrollLeftMaxValue, containerRef.current.scrollLeft, containerRef.current.scrollLeftMax)
     if((props.content?.stored < props.content?.count) && (containerRef.current.scrollLeft === containerRef.current.scrollLeftMax)){
       setScrollLeftMaxReached(true)
     }
