@@ -1,5 +1,5 @@
-import { Blockquote, Button, Content, Frame, Image, Loading } from "arwes";
-import React, { useState } from "react";
+import { Blockquote, Button, Content, Frame, Image } from "arwes";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import "./FilmList.scss";
 import FlatList from "flatlist-react";
@@ -8,8 +8,29 @@ import { INFO_NOTIFICATION, WARNING_NOTIFICATION } from "../../redux/types/notif
 import CloseIcon from "mdi-react/CloseIcon";
 import CartArrowDownIcon from 'mdi-react/CartArrowDownIcon'
 import { SET_ITEM } from "../../redux/types/cartTypes";
+import Loading from "arwes/lib/Loading";
+
 function FilmList(props) {
+
+  const containerRef = useRef(null);
+  const [scrollLeftMaxReached, setScrollLeftMaxReached] = useState(false)
+  const [scrollLeftMaxValue, setScrollLeftMaxValue] = useState(0)
   const [selectedFilm, setSelectedFilm] = useState({});
+
+  useEffect(() => {
+   if(containerRef.current){
+    setScrollLeftMaxValue(containerRef.current.scrollLeftMax);
+    setScrollLeftMaxReached(false);
+    console.log(scrollLeftMaxReached, scrollLeftMaxValue)
+   }
+  }, [props.content])
+  
+  const scrollHandler = () => {
+    console.log(scrollLeftMaxValue, containerRef.current.scrollLeft, containerRef.current.scrollLeftMax)
+    if((props.content?.stored < props.content?.count) && (containerRef.current.scrollLeft === containerRef.current.scrollLeftMax)){
+      setScrollLeftMaxReached(true)
+    }
+  }
 
   const renderFilmDetail = (film, id) => {
     return (
@@ -18,16 +39,15 @@ function FilmList(props) {
   };
 
   return (
-      <div className="theList">
-        <div className="wrapperContent">
+      <div className="theList" >
+        <div className="wrapperContent" onScroll={scrollHandler} ref={containerRef}>
           <div className="movieListContainer">
             <FlatList
               list={props.content?.rows}
               renderItem={renderFilmDetail}
-              renderWhenEmpty={() => (
-               "Loading..."
-              )}
-              hasMoreItems={props.content?.stored < props.content?.count}
+              paginationLoadingIndicatorPosition="center"
+              paginationLoadingIndicator={<Loading style={{marginLeft: '1em'}}/>}
+              hasMoreItems={scrollLeftMaxReached}
               loadMoreItems={props.fetchMoreItems}
             />
           </div>
